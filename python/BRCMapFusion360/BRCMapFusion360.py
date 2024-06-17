@@ -147,7 +147,6 @@ def add_heart(sketch, center, size, name):
     # Create top right arc
     top_right_arc = sketch.sketchCurves.sketchArcs.addByThreePoints(right_bottom, right_top, center_point)
 
-
 def add_fusion_arch(sketch, startAngle, endAngle, archRadius, name):
     centerX, centerY = point_to_cm(GOLDEN_STAKE)
     radius_cm = archRadius / FEET_PER_CM
@@ -160,9 +159,12 @@ def add_fusion_arch(sketch, startAngle, endAngle, archRadius, name):
     end_x = radius_cm * math.cos(end_angle_rad)
     end_y = radius_cm * math.sin(end_angle_rad)
 
+    # Apply MIRROR_X transformation
     if MIRROR_X:
         start_x = -start_x
         end_x = -end_x
+
+    # Apply FLIP_Z transformation
     if FLIP_Z:
         start_y = -start_y
         end_y = -end_y
@@ -170,7 +172,10 @@ def add_fusion_arch(sketch, startAngle, endAngle, archRadius, name):
     start = adsk.core.Point3D.create(centerX + start_x, centerY + start_y, HEIGHT_Z)
     end = adsk.core.Point3D.create(centerX + end_x, centerY + end_y, HEIGHT_Z)
 
-    if FLIP_Z:
+    # Adjust the order of points for FLIP_Z and MIRROR_X combinations
+    if FLIP_Z and MIRROR_X:
+        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, HEIGHT_Z), start, end)
+    elif FLIP_Z:
         arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, HEIGHT_Z), end, start)
     else:
         arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, HEIGHT_Z), start, end)
