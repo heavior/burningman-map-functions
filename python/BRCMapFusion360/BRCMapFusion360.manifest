@@ -1,0 +1,10 @@
+{
+	"autodeskProduct":	"Fusion",
+	"type":	"script",
+	"author":	"",
+	"description":	{
+		"":	"Creates a sketch with Burning Man map"
+	},
+	"supportedOS":	"windows|mac",
+	"editEnabled":	true
+}

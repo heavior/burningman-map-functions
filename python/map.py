@@ -9,7 +9,7 @@ GOLDEN_STAKE = (40.786400, -119.203500)
 ELEVATION = 3904
 
 manToTempleInFeet = 2500 # not in the measurements, number is taken from 2023 official printed BRC map
-templeRadiusInFeet = 150 # not in the measurements, number is taken from 2023 official printed BRC map
+templeRadiusInFeet = 200 # not in the measurements, number is taken from 2023 official printed BRC map
 manRadiusInFeet = 400 # not in the measurements, number is taken from 2023 official printed BRC map
 
 fencePoints = [
