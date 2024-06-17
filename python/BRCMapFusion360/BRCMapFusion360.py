@@ -8,15 +8,16 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
-from map import renderMap, GOLDEN_STAKE, distanceBearingFromCenter, ELEVATION, YEAR
+from map import renderMap, GOLDEN_STAKE, diameterKInFeet
 import math
 
 # Global variables
 HEIGHT_Z = 0
 FLIP_Z = True
-MIRROR_X = False
-SKETCH_NAME = f"BRC map {YEAR}"
-FEET_PER_MILIMETER = 2500  # Conversion factor
+MIRROR_X = True
+SKETCH_NAME = "BRC map"
+CITY_DIAMETER_CM = 4.7  # Diameter of the city in centimeters
+FEET_PER_CM = diameterKInFeet / CITY_DIAMETER_CM
 
 # Fusion 360 Application
 app = adsk.core.Application.get()
@@ -70,13 +71,13 @@ def convertGeoToFeet(coordinates):
     y = distance * math.sin(angle)
     return x, y
 
-def point_to_mm(point):
+def point_to_cm(point):
     x, y = convertGeoToFeet(point)
     if MIRROR_X:
         x = -x
     if FLIP_Z:
         y = -y
-    return [x / FEET_PER_MILIMETER, y / FEET_PER_MILIMETER]
+    return [x / FEET_PER_CM, y / FEET_PER_CM]
 
 def find_or_create_sketch():
     sketches = design.rootComponent.sketches
@@ -95,33 +96,69 @@ def find_or_create_sketch():
     return sketch
 
 def add_circle(sketch, location, radius, name):
-    x, y = point_to_mm(location)
-    circle = sketch.sketchCurves.sketchCircles.addByCenterRadius(adsk.core.Point3D.create(x, y, HEIGHT_Z), radius / FEET_PER_MILIMETER)
+    x, y = point_to_cm(location)
+    circle = sketch.sketchCurves.sketchCircles.addByCenterRadius(adsk.core.Point3D.create(x, y, HEIGHT_Z), radius / FEET_PER_CM)
     circle.name = name
 
 def add_heart(sketch, center, size, name):
-    x, y = point_to_mm(center)
-    size = size / FEET_PER_MILIMETER
-    points = [
-        adsk.core.Point3D.create(x, y + size * 0.3, HEIGHT_Z),
-        adsk.core.Point3D.create(x - size * 0.5, y - size * 0.5, HEIGHT_Z),
-        adsk.core.Point3D.create(x, y - size, HEIGHT_Z),
-        adsk.core.Point3D.create(x + size * 0.5, y - size * 0.5, HEIGHT_Z),
-    ]
-    for i in range(len(points)):
-        sketch.sketchCurves.sketchLines.addByTwoPoints(points[i], points[(i + 1) % len(points)])
+    x, y = point_to_cm(center)
+    size = size / FEET_PER_CM
+
+    if FLIP_Z:
+        y = -y
+    if MIRROR_X:
+        x = -x
+
+    # Define key points for the heart shape
+    center_point = adsk.core.Point3D.create(x, y, HEIGHT_Z)  # Center of the heart
+    bottom_tip = adsk.core.Point3D.create(x, y - size, HEIGHT_Z)  # Bottom tip of the heart
+
+    # Define the control points for the bottom and top curves
+    left_bottom = adsk.core.Point3D.create(x - size * 0.5, y - size * 0.25, HEIGHT_Z)
+    right_bottom = adsk.core.Point3D.create(x + size * 0.5, y - size * 0.25, HEIGHT_Z)
+    left_top = adsk.core.Point3D.create(x - size * 0.25, y + size * 0.25, HEIGHT_Z)
+    right_top = adsk.core.Point3D.create(x + size * 0.25, y + size * 0.25, HEIGHT_Z)
+
+    # Adjust points for MIRROR_X and FLIP_Z
+    if MIRROR_X:
+        left_bottom.x = -left_bottom.x
+        right_bottom.x = -right_bottom.x
+        left_top.x = -left_top.x
+        right_top.x = -right_top.x
+        center_point.x = - center_point.x
+        bottom_tip.x = - bottom_tip.x
+    if FLIP_Z:
+        left_bottom.y = -left_bottom.y
+        right_bottom.y = -right_bottom.y
+        left_top.y = -left_top.y
+        right_top.y = -right_top.y
+        center_point.y = - center_point.y
+        bottom_tip.y = - bottom_tip.y
+
+    # Create bottom left line
+    bottom_left_line = sketch.sketchCurves.sketchLines.addByTwoPoints(bottom_tip, left_bottom)
+
+    # Create bottom right line
+    bottom_right_line = sketch.sketchCurves.sketchLines.addByTwoPoints(bottom_tip, right_bottom)
+
+    # Create top left arc
+    top_left_arc = sketch.sketchCurves.sketchArcs.addByThreePoints(left_bottom, left_top, center_point)
+
+    # Create top right arc
+    top_right_arc = sketch.sketchCurves.sketchArcs.addByThreePoints(right_bottom, right_top, center_point)
+
 
 def add_fusion_arch(sketch, startAngle, endAngle, archRadius, name):
-    centerX, centerY = point_to_mm(GOLDEN_STAKE)
-    radius_mm = archRadius / FEET_PER_MILIMETER
+    centerX, centerY = point_to_cm(GOLDEN_STAKE)
+    radius_cm = archRadius / FEET_PER_CM
 
     start_angle_rad = math.radians(startAngle)
     end_angle_rad = math.radians(endAngle)
 
-    start_x = radius_mm * math.cos(start_angle_rad)
-    start_y = radius_mm * math.sin(start_angle_rad)
-    end_x = radius_mm * math.cos(end_angle_rad)
-    end_y = radius_mm * math.sin(end_angle_rad)
+    start_x = radius_cm * math.cos(start_angle_rad)
+    start_y = radius_cm * math.sin(start_angle_rad)
+    end_x = radius_cm * math.cos(end_angle_rad)
+    end_y = radius_cm * math.sin(end_angle_rad)
 
     if MIRROR_X:
         start_x = -start_x
@@ -139,8 +176,8 @@ def add_fusion_arch(sketch, startAngle, endAngle, archRadius, name):
         arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, HEIGHT_Z), start, end)
 
 def add_fusion_line(sketch, startCoordinates, endCoordinates, name):
-    startX, startY = point_to_mm(startCoordinates)
-    endX, endY = point_to_mm(endCoordinates)
+    startX, startY = point_to_cm(startCoordinates)
+    endX, endY = point_to_cm(endCoordinates)
     start_point = adsk.core.Point3D.create(startX, startY, HEIGHT_Z)
     end_point = adsk.core.Point3D.create(endX, endY, HEIGHT_Z)
     line = sketch.sketchCurves.sketchLines.addByTwoPoints(start_point, end_point)
