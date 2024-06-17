@@ -203,13 +203,16 @@
 <line id="9:00 Promenade line_0" x1="-176.4355539529579" y1="-177.11717957667247" x2="-28.22968529201966" y2="-28.338752059951684" stroke="black" />
 </g>
   <g id="12:00 Promenade">
-<line id="12:00 Promenade line_0" x1="165.84941931397793" y1="-166.49015019847442" x2="28.229685292019656" y2="-28.33875205995169" stroke="black" />
+<line id="12:00 Promenade line_0" x1="162.32070780767546" y1="-162.9478070330212" x2="28.229685292019656" y2="-28.33875205995169" stroke="black" />
 </g>
   <g id="Man">
 <circle id="Man circle_0" cx="0.0" cy="-0.0" r="40.0" fill="none" stroke="black" />
 </g>
   <g id="Temple">
-<circle id="Temple circle_0" cx="176.43555395295786" cy="-177.11717957667253" r="15.0" fill="none" stroke="black" />
+<g xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:ns2="http://www.inkscape.org/namespaces/inkscape" id="Temple_icon_0" transform="translate(176.43555395295786, -177.11717957667253) scale(1.25) rotate(0) translate(-16.0, -14.8)"><ns0:defs id="defs3957" />
+  <ns1:namedview id="namedview3955" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" ns2:showpageshadow="2" ns2:pageopacity="0.0" ns2:pagecheckerboard="0" ns2:deskcolor="#d1d1d1" showgrid="false" showguides="false" ns2:zoom="5.9272367" ns2:cx="9.9540482" ns2:cy="52.132218" ns2:window-width="1920" ns2:window-height="1080" ns2:window-x="0" ns2:window-y="0" ns2:window-maximized="0" ns2:current-layer="svg3953" />
+  <ns0:path d="M 24.487843,-1.1330419 C 21.617318,-1.392055 18.854102,0.53220248 17.15088,3.1688395 15.447656,0.53220248 12.696294,-1.1330419 9.8139164,-1.1330419 c -5.3717049,0 -9.69527233,4.7181924 -9.69527233,10.6853184 0,8.7425325 15.84466593,21.1752905 15.84466593,21.1752905 0,0 15.977471,-12.094707 16.003308,-20.8384266 0.01329,-4.4980728 -1.266145,-10.46160451 -7.478775,-11.0221823 z" id="path3951" style="stroke-width:1.34839;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-opacity:1" ns1:nodetypes="scsscss" />
+</g>
 </g>
   <g id="Trash Fence">
 <line id="Trash Fence line_0" x1="-132.49712993773085" y1="832.2918996463941" x2="-832.5649122141847" y2="131.00096400222498" stroke="black" />

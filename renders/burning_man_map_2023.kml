@@ -616,44 +616,46 @@
                     <outline>1</outline>
                 </PolyStyle>
             </Style>
-            <Style id="401">
-                <PolyStyle id="402">
-                    <color>64008000</color>
+            <Style id="397">
+                <IconStyle id="398">
                     <colorMode>normal</colorMode>
-                    <fill>1</fill>
-                    <outline>1</outline>
-                </PolyStyle>
+                    <scale>4.0</scale>
+                    <heading>0</heading>
+                    <Icon id="399">
+                        <href>temple.svg</href>
+                    </Icon>
+                </IconStyle>
             </Style>
-            <Style id="405">
-                <LineStyle id="406">
+            <Style id="402">
+                <LineStyle id="403">
                     <color>ffff0000</color>
                     <colorMode>normal</colorMode>
                     <width>2</width>
                 </LineStyle>
             </Style>
-            <Style id="409">
-                <LineStyle id="410">
+            <Style id="406">
+                <LineStyle id="407">
                     <color>ffff0000</color>
                     <colorMode>normal</colorMode>
                     <width>2</width>
                 </LineStyle>
             </Style>
-            <Style id="413">
-                <LineStyle id="414">
+            <Style id="410">
+                <LineStyle id="411">
                     <color>ffff0000</color>
                     <colorMode>normal</colorMode>
                     <width>2</width>
                 </LineStyle>
             </Style>
-            <Style id="417">
-                <LineStyle id="418">
+            <Style id="414">
+                <LineStyle id="415">
                     <color>ffff0000</color>
                     <colorMode>normal</colorMode>
                     <width>2</width>
                 </LineStyle>
             </Style>
-            <Style id="421">
-                <LineStyle id="422">
+            <Style id="418">
+                <LineStyle id="419">
                     <color>ffff0000</color>
                     <colorMode>normal</colorMode>
                     <width>2</width>
@@ -1296,7 +1298,7 @@
                 <name>12:00 Promenade</name>
                 <styleUrl>#385</styleUrl>
                 <LineString id="383">
-                    <coordinates>-119.19749900694157,40.790960737633156,3904 -119.20247861236065,40.78717631806081,3904</coordinates>
+                    <coordinates>-119.19762669619492,40.79086370394936,3904 -119.20247861236065,40.78717631806081,3904</coordinates>
                 </LineString>
             </Placemark>
             <Placemark id="388">
@@ -1312,47 +1314,43 @@
             </Placemark>
             <Placemark id="396">
                 <name>Temple</name>
-                <styleUrl>#401</styleUrl>
-                <Polygon id="395">
-                    <outerBoundaryIs>
-                        <LinearRing id="399">
-                            <coordinates>-119.1971159369509,40.79166354471378,3904 -119.1967975287306,40.791584915258085,3904 -119.19660074321929,40.79137906110478,3904 -119.19660074518599,40.79112461224622,3904 -119.1967975319128,40.790918759498005,3904 -119.1971159369509,40.79084013091071,3904 -119.197434341989,40.790918759498005,3904 -119.1976311287158,40.79112461224622,3904 -119.1976311306825,40.79137906110478,3904 -119.19743434517119,40.791584915258085,3904 -119.1971159369509,40.79166354471378,3904 -119.1971159369509,40.79166354471378,3904</coordinates>
-                        </LinearRing>
-                    </outerBoundaryIs>
-                </Polygon>
+                <styleUrl>#397</styleUrl>
+                <Point id="395">
+                    <coordinates>-119.1971159369509,40.79125183782698,3904</coordinates>
+                </Point>
             </Placemark>
-            <Placemark id="404">
+            <Placemark id="401">
                 <name>Trash Fence</name>
-                <styleUrl>#405</styleUrl>
-                <LineString id="403">
+                <styleUrl>#402</styleUrl>
+                <LineString id="400">
                     <coordinates>-119.208301,40.763558,3904 -119.233566,40.782814,3904</coordinates>
                 </LineString>
             </Placemark>
-            <Placemark id="408">
+            <Placemark id="405">
                 <name>Trash Fence</name>
-                <styleUrl>#409</styleUrl>
-                <LineString id="407">
+                <styleUrl>#406</styleUrl>
+                <LineString id="404">
                     <coordinates>-119.233566,40.782814,3904 -119.217274,40.807028,3904</coordinates>
                 </LineString>
             </Placemark>
-            <Placemark id="412">
+            <Placemark id="409">
                 <name>Trash Fence</name>
-                <styleUrl>#413</styleUrl>
-                <LineString id="411">
+                <styleUrl>#410</styleUrl>
+                <LineString id="408">
                     <coordinates>-119.217274,40.807028,3904 -119.181931,40.802722,3904</coordinates>
                 </LineString>
             </Placemark>
-            <Placemark id="416">
+            <Placemark id="413">
                 <name>Trash Fence</name>
-                <styleUrl>#417</styleUrl>
-                <LineString id="415">
+                <styleUrl>#414</styleUrl>
+                <LineString id="412">
                     <coordinates>-119.181931,40.802722,3904 -119.176407,40.775857,3904</coordinates>
                 </LineString>
             </Placemark>
-            <Placemark id="420">
+            <Placemark id="417">
                 <name>Trash Fence</name>
-                <styleUrl>#421</styleUrl>
-                <LineString id="419">
+                <styleUrl>#418</styleUrl>
+                <LineString id="416">
                     <coordinates>-119.176407,40.775857,3904 -119.208301,40.763558,3904</coordinates>
                 </LineString>
             </Placemark>
