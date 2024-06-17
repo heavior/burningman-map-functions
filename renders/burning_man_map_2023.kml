@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="1">
+        <Folder id="2">
+            <Style id="5">
+                <LineStyle id="6">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="9">
+                <LineStyle id="10">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="13">
+                <LineStyle id="14">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="17">
+                <LineStyle id="18">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="21">
+                <LineStyle id="22">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="25">
+                <LineStyle id="26">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="29">
+                <LineStyle id="30">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="33">
+                <LineStyle id="34">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="37">
+                <LineStyle id="38">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="41">
+                <LineStyle id="42">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="45">
+                <LineStyle id="46">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="49">
+                <LineStyle id="50">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="53">
+                <LineStyle id="54">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="57">
+                <LineStyle id="58">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="61">
+                <LineStyle id="62">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="65">
+                <LineStyle id="66">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="69">
+                <LineStyle id="70">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="73">
+                <LineStyle id="74">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="77">
+                <LineStyle id="78">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="81">
+                <LineStyle id="82">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="85">
+                <LineStyle id="86">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="89">
+                <LineStyle id="90">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="93">
+                <LineStyle id="94">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="97">
+                <LineStyle id="98">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="101">
+                <LineStyle id="102">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="105">
+                <LineStyle id="106">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="109">
+                <LineStyle id="110">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="113">
+                <LineStyle id="114">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="117">
+                <LineStyle id="118">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="121">
+                <LineStyle id="122">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="125">
+                <LineStyle id="126">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="129">
+                <LineStyle id="130">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="133">
+                <LineStyle id="134">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="137">
+                <LineStyle id="138">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="141">
+                <LineStyle id="142">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="145">
+                <LineStyle id="146">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="149">
+                <LineStyle id="150">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="153">
+                <LineStyle id="154">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="157">
+                <LineStyle id="158">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="161">
+                <LineStyle id="162">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="165">
+                <LineStyle id="166">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="169">
+                <LineStyle id="170">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="173">
+                <LineStyle id="174">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="177">
+                <LineStyle id="178">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="181">
+                <LineStyle id="182">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="185">
+                <LineStyle id="186">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="189">
+                <LineStyle id="190">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="193">
+                <LineStyle id="194">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="197">
+                <LineStyle id="198">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="201">
+                <LineStyle id="202">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="205">
+                <LineStyle id="206">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="209">
+                <LineStyle id="210">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="213">
+                <LineStyle id="214">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="217">
+                <LineStyle id="218">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="221">
+                <LineStyle id="222">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="225">
+                <LineStyle id="226">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="229">
+                <LineStyle id="230">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="233">
+                <LineStyle id="234">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="237">
+                <LineStyle id="238">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="241">
+                <LineStyle id="242">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="245">
+                <LineStyle id="246">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="249">
+                <LineStyle id="250">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="253">
+                <LineStyle id="254">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="257">
+                <LineStyle id="258">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="261">
+                <LineStyle id="262">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="265">
+                <LineStyle id="266">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="269">
+                <LineStyle id="270">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="277">
+                <PolyStyle id="278">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="285">
+                <PolyStyle id="286">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="293">
+                <PolyStyle id="294">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="301">
+                <PolyStyle id="302">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="309">
+                <PolyStyle id="310">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="317">
+                <PolyStyle id="318">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="325">
+                <PolyStyle id="326">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="333">
+                <PolyStyle id="334">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="341">
+                <PolyStyle id="342">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="349">
+                <PolyStyle id="350">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="357">
+                <PolyStyle id="358">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="361">
+                <LineStyle id="362">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="365">
+                <LineStyle id="366">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="369">
+                <LineStyle id="370">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="373">
+                <LineStyle id="374">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="377">
+                <LineStyle id="378">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="381">
+                <LineStyle id="382">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="385">
+                <LineStyle id="386">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="393">
+                <PolyStyle id="394">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="401">
+                <PolyStyle id="402">
+                    <color>64008000</color>
+                    <colorMode>normal</colorMode>
+                    <fill>1</fill>
+                    <outline>1</outline>
+                </PolyStyle>
+            </Style>
+            <Style id="405">
+                <LineStyle id="406">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="409">
+                <LineStyle id="410">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="413">
+                <LineStyle id="414">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="417">
+                <LineStyle id="418">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <Style id="421">
+                <LineStyle id="422">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                    <width>2</width>
+                </LineStyle>
+            </Style>
+            <name>Burning Man Map 2023</name>
+            <Placemark id="4">
+                <name>esplanade</name>
+                <styleUrl>#5</styleUrl>
+                <LineString id="3">
+                    <coordinates>-119.19478007472755,40.784623708977236,3904 -119.19515975526694,40.78377380561437,3904 -119.19568212293666,40.78296884040611,3904 -119.19633823611488,40.782222584685506,3904 -119.19711686615655,40.78154780494673,3904 -119.19800468967965,40.780956044553214,3904 -119.19898651658681,40.78045742638462,3904 -119.20004554991672,40.78006047978847,3904 -119.20116367308341,40.779771994787026,3904 -119.20232175959926,40.77959690602369,3904 -119.2035,40.779538208426324,3904 -119.20467824040075,40.77959690602369,3904 -119.2058363269166,40.779771994787026,3904 -119.20695445008329,40.78006047978847,3904 -119.2080134834132,40.78045742638462,3904 -119.20840257785534,40.780638278713944,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="8">
+                <name>esplanade</name>
+                <styleUrl>#9</styleUrl>
+                <LineString id="7">
+                    <coordinates>-119.21107989507422,40.78267309871193,3904 -119.21131787706335,40.78296884040611,3904 -119.21184024473307,40.78377380561437,3904 -119.21221992527246,40.784623708977236,3904 -119.21245041733312,40.785504009828465,3904 -119.21252777141423,40.7863996468668,3904 -119.21245065782924,40.787295295798394,3904 -119.21222038987528,40.78817563151886,3904 -119.21184090178068,40.78902559035071,3904 -119.21131868177906,40.78983062784754,3904 -119.21066266142887,40.79057696774997,3904 -119.20988406304912,40.79125183782698,3904 -119.2089962078641,40.791843688558714,3904 -119.20801428812892,40.79234239090915,3904 -119.20695510713092,40.79273940979387,3904 -119.20583679151943,40.79302795026429,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="12">
+                <name>a</name>
+                <styleUrl>#13</styleUrl>
+                <LineString id="11">
+                    <coordinates>-119.19324541596932,40.78431101351218,3904 -119.19369194019335,40.78331153289981,3904 -119.19430625984774,40.78236490129705,3904 -119.19507785854492,40.78148731328162,3904 -119.19599353074473,40.78069378165704,3904 -119.1970376079276,40.779997880781806,3904 -119.19819222676288,40.77941151452552,3904 -119.19943763467901,40.778944712807544,3904 -119.20075252761208,40.778605460184544,3904 -119.20211441416922,40.77839955940631,3904 -119.2035,40.7783305322622,3904 -119.2048855858308,40.77839955940631,3904 -119.20624747238793,40.778605460184544,3904 -119.207562365321,40.778944712807544,3904 -119.20880777323713,40.77941151452552,3904 -119.20880894072896,40.77941202691356,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="16">
+                <name>a</name>
+                <styleUrl>#17</styleUrl>
+                <LineString id="15">
+                    <coordinates>-119.21269306587304,40.78236401390624,3904 -119.21269374015228,40.78236490129705,3904 -119.21330805980666,40.78331153289981,3904 -119.2137545840307,40.78431101351218,3904 -119.21402566588235,40.78534624370201,3904 -119.21411665916878,40.786399511625255,3904 -119.21402599848271,40.7874527959966,3904 -119.21375522656525,40.788488074409756,3904 -119.21330896848775,40.78948763173439,3904 -119.21269485305477,40.79043436331051,3904 -119.21192338273654,40.791312067747384,3904 -119.21100775432441,40.79210572430757,3904 -119.20996363335388,40.7928017501184,3904 -119.20880888613965,40.79338823279614,3904 -119.20756327400211,40.793855134487494,3904 -119.2062481149225,40.794194463822734,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="20">
+                <name>b</name>
+                <styleUrl>#21</styleUrl>
+                <LineString id="19">
+                    <coordinates>-119.19223394420403,40.78410490760596,3904 -119.19272452775061,40.7830068429282,3904 -119.19339945462124,40.78196684151727,3904 -119.19424717034441,40.78100269500601,3904 -119.19505143561145,40.78028805759956,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="24">
+                <name>b</name>
+                <styleUrl>#25</styleUrl>
+                <LineString id="23">
+                    <coordinates>-119.19545995457172,40.77997758120704,3904 -119.19640022833188,40.77936635923244,3904 -119.19766873118378,40.778722160434505,3904 -119.199036974395,40.77820931906455,3904 -119.20048155323427,40.77783660690272,3904 -119.2019777587522,40.7776103987958,3904 -119.20321117186167,40.77753728260767,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="28">
+                <name>b</name>
+                <styleUrl>#29</styleUrl>
+                <LineString id="27">
+                    <coordinates>-119.20378882813834,40.77753728260767,3904 -119.20502224124782,40.7776103987958,3904 -119.20651844676574,40.77783660690272,3904 -119.20796302560501,40.77820931906455,3904 -119.2095261396015,40.77880959896698,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="32">
+                <name>b</name>
+                <styleUrl>#33</styleUrl>
+                <LineString id="31">
+                    <coordinates>-119.2134854785458,40.78181872386454,3904 -119.21360054537877,40.78196684151727,3904 -119.2142754722494,40.7830068429282,3904 -119.21476605579598,40.78410490760596,3904 -119.21506389380428,40.785242249723176,3904 -119.21516026466865,40.78617985052617,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="36">
+                <name>b</name>
+                <styleUrl>#37</styleUrl>
+                <LineString id="35">
+                    <coordinates>-119.21516034147335,40.78661897124348,3904 -119.2150642952558,40.787556591184725,3904 -119.21476683134074,40.78869399150792,3904 -119.21427656903533,40.78979214877805,3904 -119.21360188866173,40.79083227085769,3904 -119.21275432789305,40.79179655789064,3904 -119.21195011357541,40.79251131724507,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="40">
+                <name>b</name>
+                <styleUrl>#41</styleUrl>
+                <LineString id="39">
+                    <coordinates>-119.21154159461516,40.792821851338324,3904 -119.21060126990561,40.79343319526091,3904 -119.20933261209922,40.79407753458055,3904 -119.20796412239098,40.79459049661923,3904 -119.20651922231055,40.794963301373414,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="44">
+                <name>c</name>
+                <styleUrl>#45</styleUrl>
+                <LineString id="43">
+                    <coordinates>-119.19122247869251,40.783898792826776,3904 -119.19175712414979,40.78270214483048,3904 -119.19249266022204,40.78156877458435,3904 -119.19341649421867,40.78051807071005,3904 -119.1945128143938,40.77956800678375,3904 -119.19576286080871,40.77873483409343,3904 -119.19714524642794,40.77803280388616,3904 -119.19863632294768,40.77747392383651,3904 -119.20021058510471,40.77706775288184,3904 -119.20184110656943,40.776821237915186,3904 -119.2035,40.776738595112995,3904 -119.20515889343058,40.776821237915186,3904 -119.2067894148953,40.77706775288184,3904 -119.20836367705233,40.77747392383651,3904 -119.20985475357207,40.77803280388616,3904 -119.21066575920996,40.778420365262136,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="48">
+                <name>c</name>
+                <styleUrl>#49</styleUrl>
+                <LineString id="47">
+                    <coordinates>-119.2139973193352,40.78095235037595,3904 -119.21450733977797,40.78156877458435,3904 -119.21524287585022,40.78270214483048,3904 -119.2157775213075,40.783898792826776,3904 -119.21610211848711,40.78513824640156,3904 -119.21621110210714,40.78639929992613,3904 -119.216102595262,40.787660377028665,3904 -119.21577844236586,40.78889989973048,3904 -119.21524417842346,40.79009665769203,3904 -119.21450893509788,40.79123017124765,3904 -119.2135852851295,40.792281042009385,3904 -119.21248902772298,40.79323128502797,3904 -119.21123891853948,40.794064636810575,3904 -119.20985634889205,40.79476683390529,3904 -119.20836497962563,40.795325857264444,3904 -119.20679033595373,40.79573213818436,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="52">
+                <name>d</name>
+                <styleUrl>#53</styleUrl>
+                <LineString id="51">
+                    <coordinates>-119.19021101943493,40.783692669174755,3904 -119.19078972939091,40.7823974386068,3904 -119.19158587665002,40.78117070049849,3904 -119.19258583016745,40.78003344039394,3904 -119.19377247496718,40.7790051121399,3904 -119.19512550535768,40.77810330536493,3904 -119.19662177249488,40.77734344488062,3904 -119.19823568033665,40.776738527123506,3904 -119.1999396232231,40.77629889812197,3904 -119.20170445762078,40.77603207676451,3904 -119.2035,40.775942626373165,3904 -119.20529554237923,40.77603207676451,3904 -119.20706037677691,40.77629889812197,3904 -119.20876431966336,40.776738527123506,3904 -119.21037822750513,40.77734344488062,3904 -119.21187449464233,40.77810330536493,3904 -119.21322752503283,40.7790051121399,3904 -119.21441416983257,40.78003344039394,3904 -119.21541412334999,40.78117070049849,3904 -119.2162102706091,40.7823974386068,3904 -119.21678898056508,40.783692669174755,3904 -119.21714033993057,40.78503423373722,3904 -119.21725832357103,40.786399179821295,3904 -119.21714089850107,40.78776415352836,3904 -119.21679005964043,40.78910579907731,3904 -119.2162117966521,40.79040115847617,3904 -119.21541599236336,40.791628064480186,3904 -119.21441625444612,40.79276552010342,3904 -119.21322968318361,40.79379405817486,3904 -119.21187657925593,40.794696074767245,3904 -119.21038009651858,40.795456130770255,3904 -119.20876584570645,40.79606121642308,3904 -119.20706145585234,40.79650097425553,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="56">
+                <name>e</name>
+                <styleUrl>#57</styleUrl>
+                <LineString id="55">
+                    <coordinates>-119.18919956643148,40.783486536649995,3904 -119.18982234347405,40.78209272425734,3904 -119.19067910390511,40.78077261925986,3904 -119.19175517819052,40.77954880405788,3904 -119.19303214803928,40.77844221269151,3904 -119.19448816197834,40.77747177304706,3904 -119.19609830938418,40.77665408341798,3904 -119.19783504656151,40.7760031289256,3904 -119.19966866758915,40.77553004262313,3904 -119.20156781190607,40.775242915343746,3904 -119.2035,40.77514665752319,3904 -119.20543218809394,40.775242915343746,3904 -119.20733133241086,40.77553004262313,3904 -119.2091649534385,40.7760031289256,3904 -119.21090169061583,40.77665408341798,3904 -119.21251183802167,40.77747177304706,3904 -119.21396785196073,40.77844221269151,3904 -119.21524482180949,40.77954880405788,3904 -119.2163208960949,40.78077261925986,3904 -119.21717765652596,40.78209272425734,3904 -119.21780043356853,40.783486536649995,3904 -119.21817855813435,40.78493021173022,3904 -119.218305545031,40.78639905021294,3904 -119.2181792049727,40.78786792068375,3904 -119.21780168316427,40.789311689548306,3904 -119.2171794237212,40.790705651130324,3904 -119.21632306045824,40.79202595055514,3904 -119.21524723584314,40.793249992172555,3904 -119.21397035115228,40.79435682651262,3904 -119.21251425205537,40.79532750913077,3904 -119.21090385497926,40.796145425175304,3904 -119.20916672063386,40.79679657409505,3904 -119.2073325820067,40.79726980958688,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="60">
+                <name>f</name>
+                <styleUrl>#61</styleUrl>
+                <LineString id="59">
+                    <coordinates>-119.18749057384427,40.783138223602194,3904 -119.18818781494775,40.7815778436169,3904 -119.18914699524862,40.78009998298327,3904 -119.19035169021693,40.7787299220873,3904 -119.19178127921616,40.77749109581008,3904 -119.1934112988701,40.77640469304398,3904 -119.19521386182193,40.77548929467401,3904 -119.19715813370769,40.77476055618275,3904 -119.19921086019637,40.77423094027361,3904 -119.2013369351154,40.77390950405363,3904 -119.2035,40.773801744388464,3904 -119.2056630648846,40.77390950405363,3904 -119.20778913980364,40.77423094027361,3904 -119.20984186629232,40.77476055618275,3904 -119.21178613817808,40.77548929467401,3904 -119.21358870112991,40.77640469304398,3904 -119.21521872078385,40.77749109581008,3904 -119.21664830978308,40.7787299220873,3904 -119.21785300475139,40.78009998298327,3904 -119.21881218505226,40.7815778436169,3904 -119.21950942615574,40.783138223602194,3904 -119.2199327815303,40.78475442917895,3904 -119.22007498817776,40.7863988096247,3904 -119.21993359221769,40.788043230161364,3904 -119.21951099228349,40.78965955327874,3904 -119.2188143998914,40.79122012024418,3904 -119.2178557173643,40.79269822455505,3904 -119.21665133530969,40.79406856921921,3904 -119.21522185303954,40.7953077000172,3904 -119.21359172665659,40.79639440730408,3904 -119.21178885079117,40.79731008944225,3904 -119.20984408113165,40.79803907161078,3904 -119.20779070593156,40.79856887450007,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="64">
+                <name>g</name>
+                <styleUrl>#65</styleUrl>
+                <LineString id="63">
+                    <coordinates>-119.18647913766318,40.78293206721344,3904 -119.18722045281316,40.78127310741263,3904 -119.18824025162446,40.77970188250707,3904 -119.18952107071453,40.77824526956053,3904 -119.19083839106251,40.77708469361411,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="68">
+                <name>g</name>
+                <styleUrl>#69</styleUrl>
+                <LineString id="67">
+                    <coordinates>-119.19124692761577,40.77677421858565,3904 -119.19277398795735,40.775773151072706,3904 -119.19469042781738,40.774799926603144,3904 -119.196757523696,40.77402515399129,3904 -119.19893992136491,40.77346208278736,3904 -119.20120029809804,40.7731203419065,3904 -119.20321117903383,40.77300757469805,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="72">
+                <name>g</name>
+                <styleUrl>#73</styleUrl>
+                <LineString id="71">
+                    <coordinates>-119.20378882096618,40.77300757469805,3904 -119.20579970190197,40.7731203419065,3904 -119.2080600786351,40.77346208278736,3904 -119.21024247630402,40.77402515399129,3904 -119.21230957218263,40.774799926603144,3904 -119.21422601204266,40.775773151072706,3904 -119.21575307238425,40.77677421858565,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="76">
+                <name>g</name>
+                <styleUrl>#77</styleUrl>
+                <LineString id="75">
+                    <coordinates>-119.2161616089375,40.77708469361411,3904 -119.21747892928548,40.77824526956053,3904 -119.21875974837555,40.77970188250707,3904 -119.21977954718685,40.78127310741263,3904 -119.22052086233683,40.78293206721344,3904 -119.22097099101923,40.784650382043736,3904 -119.22111978365386,40.786179084995936,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="80">
+                <name>g</name>
+                <styleUrl>#81</styleUrl>
+                <LineString id="79">
+                    <coordinates>-119.22111989971816,40.78661822462915,3904 -119.22097190738252,40.78814697218347,3904 -119.22052263261476,40.789865419876215,3904 -119.21978205073795,40.79152459103065,3904 -119.21876281458695,40.79309609137764,3904 -119.21748234919998,40.794553025082536,3904 -119.21616514759069,40.795713901647495,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="84">
+                <name>g</name>
+                <styleUrl>#85</styleUrl>
+                <LineString id="83">
+                    <coordinates>-119.21575661103745,40.79602446387108,3904 -119.21422943195728,40.797025832002575,3904 -119.21231263839425,40.79799937723052,3904 -119.21024497985535,40.79877442528384,3904 -119.20806184891326,40.799337707841424,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="88">
+                <name>h</name>
+                <styleUrl>#89</styleUrl>
+                <LineString id="87">
+                    <coordinates>-119.18546770773689,40.782725901952375,3904 -119.18625309952081,40.78096836308317,3904 -119.1873335188271,40.779303774878784,3904 -119.18869046328557,40.77776061101449,3904 -119.19030070508896,40.776365266265834,3904 -119.1921366891147,40.77514160551262,3904 -119.19416700463353,40.77411055607557,3904 -119.19635692251869,40.773289750315165,3904 -119.19866898877994,40.77269322456226,3904 -119.201063664314,40.772331179489335,3904 -119.2035,40.772209805985845,3904 -119.205936335686,40.772331179489335,3904 -119.20833101122007,40.77269322456226,3904 -119.21064307748132,40.773289750315165,3904 -119.21283299536648,40.77411055607557,3904 -119.2148633108853,40.77514160551262,3904 -119.21669929491105,40.776365266265834,3904 -119.21830953671444,40.77776061101449,3904 -119.21966648117291,40.779303774878784,3904 -119.2207469004792,40.78096836308317,3904 -119.22153229226312,40.782725901952375,3904 -119.22200919726751,40.78454632556609,3904 -119.22216943106861,40.78639848978208,3904 -119.22201022577893,40.78825070486103,3904 -119.22153427919463,40.790071277597406,3904 -119.22074971042471,40.791829053686556,3904 -119.21966992263933,40.79349395104197,3904 -119.21831337517155,40.79503747492027,3904 -119.21670326877432,40.796433206011564,3904 -119.21486714934257,40.79765725310742,3904 -119.21283643683317,40.798688662558504,3904 -119.21064588742715,40.799509777469986,3904 -119.20833299815185,40.80010654044285,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="92">
+                <name>i</name>
+                <styleUrl>#93</styleUrl>
+                <LineString id="91">
+                    <coordinates>-119.1844562840656,40.78251972781914,3904 -119.18528575507077,40.780663610628665,3904 -119.18642679685644,40.778905660098594,3904 -119.18785986792979,40.77727594644938,3904 -119.18956043677119,40.77580234428801,3904 -119.19149940234173,40.77451005636385,3904 -119.19364359226992,40.77342118309139,3904 -119.19595633017535,40.77255434515444,3904 -119.19839806244119,40.771924365598345,3904 -119.20092703376312,40.77154201680212,3904 -119.2035,40.771413836619324,3904 -119.20607296623689,40.77154201680212,3904 -119.20860193755883,40.771924365598345,3904 -119.21104366982466,40.77255434515444,3904 -119.21335640773009,40.77342118309139,3904 -119.21550059765828,40.77451005636385,3904 -119.21743956322882,40.77580234428801,3904 -119.21914013207022,40.77727594644938,3904 -119.22057320314357,40.778905660098594,3904 -119.22171424492925,40.780663610628665,3904 -119.2225437159344,40.78251972781914,3904 -119.22304740027488,40.78444225974608,3904 -119.2232166525062,40.78639831560548,3904 -119.22304854740666,40.78835442819399,3904 -119.22254593202287,40.79027712644222,3904 -119.22171737895165,40.792133508211705,3904 -119.22057704152151,40.79389180354783,3904 -119.2191444132246,40.79552191873223,3904 -119.21744399540609,40.796995951793924,3904 -119.21550487881285,40.79828867061843,3904 -119.21336024610837,40.79937794542611,3904 -119.21104680384744,40.800245128169166,3904 -119.20860415364763,40.80087537230432,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="96">
+                <name>j</name>
+                <styleUrl>#97</styleUrl>
+                <LineString id="95">
+                    <coordinates>-119.18379363056913,40.78238464340407,3904 -119.18465198246687,40.780463940822024,3904 -119.1858327435046,40.77864482239933,3904 -119.1873156913118,40.77695840433284,3904 -119.18907544016646,40.77543353073245,3904 -119.19108187617253,40.774096280837874,3904 -119.19330067279489,40.7729695235974,3904 -119.19569387791252,40.77207252717525,3904 -119.19822056236447,40.7714206300145,3904 -119.20083751894829,40.77102497903306,3904 -119.2035,40.77089233938843,3904 -119.20616248105172,40.77102497903306,3904 -119.20877943763554,40.7714206300145,3904 -119.21130612208749,40.77207252717525,3904 -119.21369932720512,40.7729695235974,3904 -119.21591812382748,40.774096280837874,3904 -119.21792455983355,40.77543353073245,3904 -119.21968430868822,40.77695840433284,3904 -119.2211672564954,40.77864482239933,3904 -119.22234801753314,40.780463940822024,3904 -119.22320636943088,40.78238464340407,3904 -119.22372760048783,40.78437407362609,3904 -119.22390276310021,40.78639819633686,3904 -119.22372882884574,40.788422379793616,3904 -119.22320874243614,40.7904119881138,3904 -119.22235137346942,40.79233297400916,3904 -119.22117136666124,40.794152461652956,3904 -119.21968889298262,40.79583930968652,3904 -119.21792930584445,40.79736464469844,3904 -119.21592270812208,40.79870235600455,3904 -119.21370343737132,40.799829543212155,3904 -119.2113094780242,40.80072690885546,3904 -119.20878181064118,40.80137908932956,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="100">
+                <name>k</name>
+                <styleUrl>#101</styleUrl>
+                <LineString id="99">
+                    <coordinates>-119.18311354161477,40.78224600017602,3904 -119.18400153558332,40.78025901292034,3904 -119.18522306200218,40.77837711735801,3904 -119.18675719964509,40.776632503158375,3904 -119.18857768607094,40.77505500941302,3904 -119.19065336785947,40.7736716148806,3904 -119.19294873395236,40.77250597723084,3904 -119.19542452295387,40.771578029112945,3904 -119.19803839402083,40.77090363790134,3904 -119.2007456499234,40.7704943348864,3904 -119.2035,40.77035711849704,3904 -119.2062543500766,40.7704943348864,3904 -119.20896160597918,40.77090363790134,3904 -119.21157547704614,40.771578029112945,3904 -119.21405126604765,40.77250597723084,3904 -119.21634663214054,40.7736716148806,3904 -119.21842231392907,40.77505500941302,3904 -119.22024280035492,40.776632503158375,3904 -119.22177693799783,40.77837711735801,3904 -119.22299846441669,40.78025901292034,3904 -119.22388645838524,40.78224600017602,3904 -119.22442569925963,40.78430408896465,3904 -119.22460692923357,40.786398069687756,3904 -119.22442701387001,40.7884921154223,3904 -119.2238889980175,40.790550394814744,3904 -119.22300205599913,40.792537685277345,3904 -119.2217813367701,40.79441997598663,3904 -119.220247706548,40.79616505034465,3904 -119.21842739319403,40.797743037900794,3904 -119.21635153833387,40.79912692624403,3904 -119.21405566482034,40.80029302405221,3904 -119.21157906862908,40.80122136731712,3904 -119.20896414561187,40.8018960617357,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="104">
+                <name>02:00</name>
+                <styleUrl>#105</styleUrl>
+                <LineString id="103">
+                    <coordinates>-119.19478007472755,40.784623708977236,3904 -119.18311354161477,40.78224600017602,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="108">
+                <name>02:15</name>
+                <styleUrl>#109</styleUrl>
+                <LineString id="107">
+                    <coordinates>-119.18818781494775,40.7815778436169,3904 -119.18400153558332,40.78025901292034,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="112">
+                <name>02:30</name>
+                <styleUrl>#113</styleUrl>
+                <LineString id="111">
+                    <coordinates>-119.19568212293666,40.78296884040611,3904 -119.18522306200218,40.77837711735801,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="116">
+                <name>02:45</name>
+                <styleUrl>#117</styleUrl>
+                <LineString id="115">
+                    <coordinates>-119.19035169021693,40.7787299220873,3904 -119.18675719964509,40.776632503158375,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="120">
+                <name>03:00</name>
+                <styleUrl>#121</styleUrl>
+                <LineString id="119">
+                    <coordinates>-119.19711686615655,40.78154780494673,3904 -119.19545740353318,40.780286175732904,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="124">
+                <name>03:00</name>
+                <styleUrl>#125</styleUrl>
+                <LineString id="123">
+                    <coordinates>-119.1950489300571,40.779975617147144,3904 -119.19124520350034,40.777083470090815,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="128">
+                <name>03:00</name>
+                <styleUrl>#129</styleUrl>
+                <LineString id="127">
+                    <coordinates>-119.1908367692584,40.77677289642344,3904 -119.18857768607094,40.77505500941302,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="132">
+                <name>03:15</name>
+                <styleUrl>#133</styleUrl>
+                <LineString id="131">
+                    <coordinates>-119.1934112988701,40.77640469304398,3904 -119.19065336785947,40.7736716148806,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="136">
+                <name>03:30</name>
+                <styleUrl>#137</styleUrl>
+                <LineString id="135">
+                    <coordinates>-119.19898651658681,40.78045742638462,3904 -119.19294873395236,40.77250597723084,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="140">
+                <name>03:45</name>
+                <styleUrl>#141</styleUrl>
+                <LineString id="139">
+                    <coordinates>-119.19715813370769,40.77476055618275,3904 -119.19542452295387,40.771578029112945,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="144">
+                <name>04:00</name>
+                <styleUrl>#145</styleUrl>
+                <LineString id="143">
+                    <coordinates>-119.20116367308341,40.779771994787026,3904 -119.19803839402083,40.77090363790134,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="148">
+                <name>04:15</name>
+                <styleUrl>#149</styleUrl>
+                <LineString id="147">
+                    <coordinates>-119.2013369351154,40.77390950405363,3904 -119.2007456499234,40.7704943348864,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="152">
+                <name>04:30</name>
+                <styleUrl>#153</styleUrl>
+                <LineString id="151">
+                    <coordinates>-119.2035,40.779538208426324,3904 -119.2035,40.777754141276304,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="156">
+                <name>04:30</name>
+                <styleUrl>#157</styleUrl>
+                <LineString id="155">
+                    <coordinates>-119.2035,40.77731498620066,3904 -119.2035,40.77322535294873,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="160">
+                <name>04:30</name>
+                <styleUrl>#161</styleUrl>
+                <LineString id="159">
+                    <coordinates>-119.2035,40.772786197527324,3904 -119.2035,40.77035711849704,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="164">
+                <name>04:45</name>
+                <styleUrl>#165</styleUrl>
+                <LineString id="163">
+                    <coordinates>-119.2056630648846,40.77390950405363,3904 -119.2062543500766,40.7704943348864,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="168">
+                <name>05:00</name>
+                <styleUrl>#169</styleUrl>
+                <LineString id="167">
+                    <coordinates>-119.2058363269166,40.779771994787026,3904 -119.20896160597918,40.77090363790134,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="172">
+                <name>05:15</name>
+                <styleUrl>#173</styleUrl>
+                <LineString id="171">
+                    <coordinates>-119.20984186629232,40.77476055618275,3904 -119.21157547704614,40.771578029112945,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="176">
+                <name>05:30</name>
+                <styleUrl>#177</styleUrl>
+                <LineString id="175">
+                    <coordinates>-119.2103764224412,40.77734582198486,3904 -119.21405126604765,40.77250597723084,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="180">
+                <name>05:45</name>
+                <styleUrl>#181</styleUrl>
+                <LineString id="179">
+                    <coordinates>-119.21358870112991,40.77640469304398,3904 -119.21634663214054,40.7736716148806,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="184">
+                <name>06:00</name>
+                <styleUrl>#185</styleUrl>
+                <LineString id="183">
+                    <coordinates>-119.21322497215974,40.77900705316418,3904 -119.21575479649967,40.777083470090815,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="188">
+                <name>06:00</name>
+                <styleUrl>#189</styleUrl>
+                <LineString id="187">
+                    <coordinates>-119.21616323074161,40.77677289642344,3904 -119.21842231392907,40.77505500941302,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="192">
+                <name>06:15</name>
+                <styleUrl>#193</styleUrl>
+                <LineString id="191">
+                    <coordinates>-119.21664830978308,40.7787299220873,3904 -119.22024280035492,40.776632503158375,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="196">
+                <name>06:30</name>
+                <styleUrl>#197</styleUrl>
+                <LineString id="195">
+                    <coordinates>-119.21541099652869,40.78117207318003,3904 -119.22177693799783,40.77837711735801,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="200">
+                <name>06:45</name>
+                <styleUrl>#201</styleUrl>
+                <LineString id="199">
+                    <coordinates>-119.21881218505226,40.7815778436169,3904 -119.22299846441669,40.78025901292034,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="204">
+                <name>07:00</name>
+                <styleUrl>#205</styleUrl>
+                <LineString id="203">
+                    <coordinates>-119.21221992527246,40.784623708977236,3904 -119.22388645838524,40.78224600017602,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="208">
+                <name>07:15</name>
+                <styleUrl>#209</styleUrl>
+                <LineString id="207">
+                    <coordinates>-119.2199327815303,40.78475442917895,3904 -119.22442569925963,40.78430408896465,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="212">
+                <name>07:30</name>
+                <styleUrl>#213</styleUrl>
+                <LineString id="211">
+                    <coordinates>-119.21252777141423,40.7863996468668,3904 -119.21487499195833,40.786399439365724,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="216">
+                <name>07:30</name>
+                <styleUrl>#217</styleUrl>
+                <LineString id="215">
+                    <coordinates>-119.21545276932066,40.786399380965975,3904 -119.22083332095089,40.786398698209766,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="220">
+                <name>07:30</name>
+                <styleUrl>#221</styleUrl>
+                <LineString id="219">
+                    <coordinates>-119.22141109830011,40.78639860997732,3904 -119.22460692923357,40.786398069687756,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="224">
+                <name>07:45</name>
+                <styleUrl>#225</styleUrl>
+                <LineString id="223">
+                    <coordinates>-119.21993359221769,40.788043230161364,3904 -119.22442701387001,40.7884921154223,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="228">
+                <name>08:00</name>
+                <styleUrl>#229</styleUrl>
+                <LineString id="227">
+                    <coordinates>-119.21222038987528,40.78817563151886,3904 -119.2238889980175,40.790550394814744,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="232">
+                <name>08:15</name>
+                <styleUrl>#233</styleUrl>
+                <LineString id="231">
+                    <coordinates>-119.2188143998914,40.79122012024418,3904 -119.22300205599913,40.792537685277345,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="236">
+                <name>08:30</name>
+                <styleUrl>#237</styleUrl>
+                <LineString id="235">
+                    <coordinates>-119.21131868177906,40.78983062784754,3904 -119.2217813367701,40.79441997598663,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="240">
+                <name>08:45</name>
+                <styleUrl>#241</styleUrl>
+                <LineString id="239">
+                    <coordinates>-119.21665133530969,40.79406856921921,3904 -119.220247706548,40.79616505034465,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="244">
+                <name>09:00</name>
+                <styleUrl>#245</styleUrl>
+                <LineString id="243">
+                    <coordinates>-119.20988406304912,40.79125183782698,3904 -119.21154407167373,40.79251325713464,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="248">
+                <name>09:00</name>
+                <styleUrl>#249</styleUrl>
+                <LineString id="247">
+                    <coordinates>-119.21195269881814,40.79282375664372,3904 -119.21575822192345,40.79571521303013,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="252">
+                <name>09:00</name>
+                <styleUrl>#253</styleUrl>
+                <LineString id="251">
+                    <coordinates>-119.21616688833302,40.79602569744236,3904 -119.21842739319403,40.797743037900794,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="256">
+                <name>09:15</name>
+                <styleUrl>#257</styleUrl>
+                <LineString id="255">
+                    <coordinates>-119.21359172665659,40.79639440730408,3904 -119.21635153833387,40.79912692624403,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="260">
+                <name>09:30</name>
+                <styleUrl>#261</styleUrl>
+                <LineString id="259">
+                    <coordinates>-119.20801428812892,40.79234239090915,3904 -119.21405566482034,40.80029302405221,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="264">
+                <name>09:45</name>
+                <styleUrl>#265</styleUrl>
+                <LineString id="263">
+                    <coordinates>-119.20984408113165,40.79803907161078,3904 -119.21157906862908,40.80122136731712,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="268">
+                <name>10:00</name>
+                <styleUrl>#269</styleUrl>
+                <LineString id="267">
+                    <coordinates>-119.20583679151943,40.79302795026429,3904 -119.20896414561187,40.8018960617357,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="272">
+                <name>3:00 &amp; B Plaza</name>
+                <styleUrl>#277</styleUrl>
+                <Polygon id="271">
+                    <outerBoundaryIs>
+                        <LinearRing id="275">
+                            <coordinates>-119.19525316631955,40.780350474057364,3904 -119.19508337732329,40.78030853837469,3904 -119.194978442405,40.78019874945558,3904 -119.19497844296411,40.78006304313529,3904 -119.19508337822793,40.779953254615705,3904 -119.19525316631955,40.779911319179945,3904 -119.19542295441116,40.779953254615705,3904 -119.19552788967498,40.78006304313529,3904 -119.19552789023409,40.78019874945558,3904 -119.1954229553158,40.78030853837469,3904 -119.19525316631955,40.780350474057364,3904 -119.19525316631955,40.780350474057364,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="280">
+                <name>4:30 &amp; B Plaza</name>
+                <styleUrl>#285</styleUrl>
+                <Polygon id="279">
+                    <outerBoundaryIs>
+                        <LinearRing id="283">
+                            <coordinates>-119.2035,40.777754141276304,3904 -119.20333021761435,40.777712205574716,3904 -119.2032252867816,40.777602416606065,3904 -119.20322528734064,40.77746671022453,3904 -119.20333021851889,40.777356921655354,3904 -119.2035,40.77731498620066,3904 -119.20366978148112,40.777356921655354,3904 -119.20377471265937,40.77746671022453,3904 -119.20377471321841,40.777602416606065,3904 -119.20366978238566,40.777712205574716,3904 -119.2035,40.777754141276304,3904 -119.2035,40.777754141276304,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="288">
+                <name>7:30 &amp; B Plaza</name>
+                <styleUrl>#293</styleUrl>
+                <Polygon id="287">
+                    <outerBoundaryIs>
+                        <LinearRing id="291">
+                            <coordinates>-119.21516388063962,40.78661898772266,3904 -119.2149940756793,40.78657705208567,3904 -119.21488913089485,40.78646726328616,3904 -119.21488913145413,40.78633155711378,3904 -119.21499407658425,40.78622176871388,3904 -119.21516388063962,40.78617983332386,3904 -119.215333684695,40.78622176871388,3904 -119.21543862982512,40.78633155711378,3904 -119.2154386303844,40.78646726328616,3904 -119.21533368559994,40.78657705208567,3904 -119.21516388063962,40.78661898772266,3904 -119.21516388063962,40.78661898772266,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="296">
+                <name>9:00 &amp; B Plaza</name>
+                <styleUrl>#301</styleUrl>
+                <Polygon id="295">
+                    <outerBoundaryIs>
+                        <LinearRing id="299">
+                            <coordinates>-119.21174838477003,40.792888084028036,3904 -119.21157856383914,40.79284614843672,3904 -119.21147360918445,40.792736359756844,3904 -119.21147360974392,40.79260065373238,3904 -119.21157856474436,40.792490865452194,3904 -119.21174838477003,40.7924489301079,3904 -119.21191820479571,40.792490865452194,3904 -119.21202315979615,40.79260065373238,3904 -119.21202316035561,40.792736359756844,3904 -119.21191820570093,40.79284614843672,3904 -119.21174838477003,40.792888084028036,3904 -119.21174838477003,40.792888084028036,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="304">
+                <name>3:00 &amp; G Plaza</name>
+                <styleUrl>#309</styleUrl>
+                <Polygon id="303">
+                    <outerBoundaryIs>
+                        <LinearRing id="307">
+                            <coordinates>-119.19104098590384,40.77714776099669,3904 -119.190871205062,40.77710582529068,3904 -119.19076627518335,40.776996036310464,3904 -119.19076627574236,40.77686032991462,3904 -119.1908712059665,40.77675054133387,3904 -119.19104098590384,40.77670860587475,3904 -119.19121076584118,40.77675054133387,3904 -119.19131569606532,40.77686032991462,3904 -119.19131569662433,40.776996036310464,3904 -119.19121076674568,40.77710582529068,3904 -119.19104098590384,40.77714776099669,3904 -119.19104098590384,40.77714776099669,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="312">
+                <name>4:30 &amp; G Plaza</name>
+                <styleUrl>#317</styleUrl>
+                <Polygon id="311">
+                    <outerBoundaryIs>
+                        <LinearRing id="315">
+                            <coordinates>-119.2035,40.77322535294874,3904 -119.20333022914319,40.77318341721415,3904 -119.20322530543555,40.7730736281591,3904 -119.20322530599447,40.77293792167072,3904 -119.20333023004751,40.77282813301506,3904 -119.2035,40.77278619752733,3904 -119.2036697699525,40.77282813301506,3904 -119.20377469400555,40.77293792167072,3904 -119.20377469456446,40.7730736281591,3904 -119.20366977085682,40.77318341721415,3904 -119.2035,40.77322535294874,3904 -119.2035,40.77322535294874,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="320">
+                <name>6:00 &amp; G Plaza</name>
+                <styleUrl>#325</styleUrl>
+                <Polygon id="319">
+                    <outerBoundaryIs>
+                        <LinearRing id="323">
+                            <coordinates>-119.21595901409617,40.77714776099669,3904 -119.21578923325433,40.77710582529068,3904 -119.21568430337568,40.776996036310464,3904 -119.2156843039347,40.77686032991462,3904 -119.21578923415883,40.77675054133387,3904 -119.21595901409617,40.77670860587475,3904 -119.21612879403351,40.77675054133387,3904 -119.21623372425765,40.77686032991462,3904 -119.21623372481666,40.776996036310464,3904 -119.21612879493802,40.77710582529068,3904 -119.21595901409617,40.77714776099669,3904 -119.21595901409617,40.77714776099669,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="328">
+                <name>7:30 &amp; G Plaza</name>
+                <styleUrl>#333</styleUrl>
+                <Polygon id="327">
+                    <outerBoundaryIs>
+                        <LinearRing id="331">
+                            <coordinates>-119.22112220962569,40.78661823165038,3904 -119.2209524046673,40.786576296013386,3904 -119.22084745988403,40.78646650721387,3904 -119.22084746044331,40.786330801041466,3904 -119.22095240557223,40.78622101264155,3904 -119.22112220962569,40.78617907725152,3904 -119.22129201367915,40.78622101264155,3904 -119.22139695880807,40.786330801041466,3904 -119.22139695936735,40.78646650721387,3904 -119.22129201458408,40.786576296013386,3904 -119.22112220962569,40.78661823165038,3904 -119.22112220962569,40.78661823165038,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="336">
+                <name>9:00 &amp; G Plaza</name>
+                <styleUrl>#341</styleUrl>
+                <Polygon id="335">
+                    <outerBoundaryIs>
+                        <LinearRing id="339">
+                            <coordinates>-119.21596255465225,40.79609003225288,3904 -119.21579272556241,40.79604809668489,3904 -119.2156877658653,40.79593830806611,3904 -119.21568776642485,40.79580260211719,3904 -119.21579272646778,40.79569281389816,3904 -119.21596255465225,40.795650878577234,3904 -119.21613238283672,40.79569281389816,3904 -119.21623734287965,40.79580260211719,3904 -119.2162373434392,40.79593830806611,3904 -119.21613238374209,40.79604809668489,3904 -119.21596255465225,40.79609003225288,3904 -119.21596255465225,40.79609003225288,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="344">
+                <name>Rod’s Ring Road</name>
+                <styleUrl>#349</styleUrl>
+                <Polygon id="343">
+                    <outerBoundaryIs>
+                        <LinearRing id="347">
+                            <coordinates>-119.21122602690583,40.78267597126275,3904 -119.21086447477634,40.78265832650644,3904 -119.21050885988907,40.78260568199135,3904 -119.21016502195981,40.78251890221946,3904 -119.2098386072554,40.78239941224049,3904 -119.20953497585221,40.782249174244285,3904 -119.20925911360052,40.782070655330706,3904 -119.20901555024199,40.78186678698711,3904 -119.20880828502533,40.78164091693952,3904 -119.20864072104249,40.78139675416914,3904 -119.20851560936272,40.78113830799779,3904 -119.20843500388165,40.780869822243496,3904 -119.20840022762467,40.78059570552791,3904 -119.2084118510566,40.780320458880915,3904 -119.20846968275133,40.78004860183109,3904 -119.20857277257228,40.77978459819608,3904 -119.20871942730906,40.77953278279127,3904 -119.20890723851123,40.779297290259876,3904 -119.20913312206002,40.77908198719263,3904 -119.20939336882691,40.77889040865088,3904 -119.20968370558545,40.77872570013465,3904 -119.20999936517657,40.77859056594766,3904 -119.21033516477445,40.77848722480614,3904 -119.21068559096899,40.778417373419614,3904 -119.21104489026916,40.778382158640696,3904 -119.2114071635425,40.77838215864069,3904 -119.21176646284268,40.778417373419614,3904 -119.21211688903722,40.77848722480614,3904 -119.2124526886351,40.77859056594766,3904 -119.21276834822622,40.77872570013465,3904 -119.21305868498477,40.77889040865088,3904 -119.21331893175163,40.77908198719264,3904 -119.21354481530045,40.77929729025988,3904 -119.21373262650262,40.779532782791264,3904 -119.2138792812394,40.77978459819608,3904 -119.21398237106035,40.78004860183109,3904 -119.21404020275507,40.78032045888092,3904 -119.214051826187,40.78059570552791,3904 -119.21401704993002,40.78086982224349,3904 -119.21393644444895,40.78113830799779,3904 -119.21381133276918,40.781396754169144,3904 -119.21364376878634,40.78164091693952,3904 -119.21343650356968,40.78186678698711,3904 -119.21319294021114,40.782070655330706,3904 -119.21291707795946,40.78224917424429,3904 -119.21261344655626,40.782399412240494,3904 -119.21228703185186,40.782518902219465,3904 -119.2119431939226,40.78260568199135,3904 -119.21158757903532,40.78265832650644,3904 -119.21122602690583,40.78267597126275,3904 -119.21122602690583,40.78267597126275,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="352">
+                <name>Central Camp</name>
+                <styleUrl>#357</styleUrl>
+                <Polygon id="351">
+                    <outerBoundaryIs>
+                        <LinearRing id="355">
+                            <coordinates>-119.21122602690583,40.78140516725816,3904 -119.21086896783245,40.78136217917596,3904 -119.21054686145968,40.78123742305748,3904 -119.21029123858884,40.78104311130691,3904 -119.2101271213675,40.78079826501412,3904 -119.21007057394745,40.780526851846304,3904 -119.21012713031338,40.78025543977041,3904 -119.21029125306356,40.78001059633639,3904 -119.2105468759344,40.7798162881194,3904 -119.21086897677833,40.77969153485967,3904 -119.21122602690583,40.779648547869414,3904 -119.21158307703334,40.77969153485967,3904 -119.21190517787727,40.7798162881194,3904 -119.21216080074811,40.78001059633639,3904 -119.21232492349829,40.78025543977041,3904 -119.21238147986422,40.780526851846304,3904 -119.21232493244416,40.78079826501412,3904 -119.21216081522283,40.78104311130691,3904 -119.21190519235199,40.78123742305748,3904 -119.21158308597921,40.78136217917596,3904 -119.21122602690583,40.78140516725816,3904 -119.21122602690583,40.78140516725816,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="360">
+                <name>Central Camp</name>
+                <styleUrl>#361</styleUrl>
+                <LineString id="359">
+                    <coordinates>-119.21204297595068,40.77990574126378,3904 -119.21322497215974,40.77900705316418,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="364">
+                <name>Central Camp</name>
+                <styleUrl>#365</styleUrl>
+                <LineString id="363">
+                    <coordinates>-119.21269374015228,40.78236490129705,3904 -119.21180375997545,40.78128749464211,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="368">
+                <name>Central Camp</name>
+                <styleUrl>#369</styleUrl>
+                <LineString id="367">
+                    <coordinates>-119.20880777323713,40.77941151452552,3904 -119.2102253818812,40.78008769842853,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="372">
+                <name>6:00 Promenade</name>
+                <styleUrl>#373</styleUrl>
+                <LineString id="371">
+                    <coordinates>-119.20922699052907,40.78204662706885,3904 -119.2045213638517,40.78562367279421,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="376">
+                <name>3:00 Promenade</name>
+                <styleUrl>#377</styleUrl>
+                <LineString id="375">
+                    <coordinates>-119.19711686615655,40.78154780494673,3904 -119.20247863614831,40.78562367279421,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="380">
+                <name>9:00 Promenade</name>
+                <styleUrl>#381</styleUrl>
+                <LineString id="379">
+                    <coordinates>-119.20988406304912,40.79125183782698,3904 -119.20452138763936,40.78717631806081,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="384">
+                <name>12:00 Promenade</name>
+                <styleUrl>#385</styleUrl>
+                <LineString id="383">
+                    <coordinates>-119.19749900694157,40.790960737633156,3904 -119.20247861236065,40.78717631806081,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="388">
+                <name>Man</name>
+                <styleUrl>#393</styleUrl>
+                <Polygon id="387">
+                    <outerBoundaryIs>
+                        <LinearRing id="391">
+                            <coordinates>-119.2035,40.78749788589212,3904 -119.20314077579602,40.787463393232024,3904 -119.20280412402742,40.7873620826544,3904 -119.20251119855885,40.78720032015619,3904 -119.20228040531217,40.78698827026014,3904 -119.20212624567121,40.786739257243916,3904 -119.20205840535722,40.786468927827144,3904 -119.20208114601148,40.78619426795221,3904 -119.20219303767189,40.785932535457775,3904 -119.20238704889073,40.785700175717984,3904 -119.20265098876479,40.78551178837879,3904 -119.20296827304966,40.785379210100245,3904 -119.20331896619186,40.78531077091697,3904 -119.20368103380815,40.78531077091697,3904 -119.20403172695035,40.78537921010025,3904 -119.20434901123522,40.785511788378784,3904 -119.20461295110928,40.78570017571799,3904 -119.2048069623281,40.78593253545777,3904 -119.20491885398853,40.786194267952204,3904 -119.20494159464279,40.786468927827144,3904 -119.2048737543288,40.786739257243916,3904 -119.20471959468784,40.78698827026014,3904 -119.20448880144117,40.787200320156195,3904 -119.20419587597259,40.7873620826544,3904 -119.203859224204,40.787463393232024,3904 -119.2035,40.78749788589212,3904 -119.2035,40.78749788589212,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="396">
+                <name>Temple</name>
+                <styleUrl>#401</styleUrl>
+                <Polygon id="395">
+                    <outerBoundaryIs>
+                        <LinearRing id="399">
+                            <coordinates>-119.1971159369509,40.79166354471378,3904 -119.1967975287306,40.791584915258085,3904 -119.19660074321929,40.79137906110478,3904 -119.19660074518599,40.79112461224622,3904 -119.1967975319128,40.790918759498005,3904 -119.1971159369509,40.79084013091071,3904 -119.197434341989,40.790918759498005,3904 -119.1976311287158,40.79112461224622,3904 -119.1976311306825,40.79137906110478,3904 -119.19743434517119,40.791584915258085,3904 -119.1971159369509,40.79166354471378,3904 -119.1971159369509,40.79166354471378,3904</coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark id="404">
+                <name>Trash Fence</name>
+                <styleUrl>#405</styleUrl>
+                <LineString id="403">
+                    <coordinates>-119.208301,40.763558,3904 -119.233566,40.782814,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="408">
+                <name>Trash Fence</name>
+                <styleUrl>#409</styleUrl>
+                <LineString id="407">
+                    <coordinates>-119.233566,40.782814,3904 -119.217274,40.807028,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="412">
+                <name>Trash Fence</name>
+                <styleUrl>#413</styleUrl>
+                <LineString id="411">
+                    <coordinates>-119.217274,40.807028,3904 -119.181931,40.802722,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="416">
+                <name>Trash Fence</name>
+                <styleUrl>#417</styleUrl>
+                <LineString id="415">
+                    <coordinates>-119.181931,40.802722,3904 -119.176407,40.775857,3904</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark id="420">
+                <name>Trash Fence</name>
+                <styleUrl>#421</styleUrl>
+                <LineString id="419">
+                    <coordinates>-119.176407,40.775857,3904 -119.208301,40.763558,3904</coordinates>
+                </LineString>
+            </Placemark>
+        </Folder>
+    </Document>
+</kml>
