@@ -14,7 +14,7 @@ This library generates Black Rock City map in different formats
 Core ideas
 1) Script operates with BRC coordinate sytem when possible - using time and letters to identify locations
 2) Map logic is separated from rendering logic, this allows replacing the "view" and create different renderers 
-(kml and svg are implemented, but also could send data to a third-party)
+(kml and svg are implemented, as well as Autodesk Fusion 360)
 3) Library provides center lines, and the view portion can tweak the rendering the way it likes (see how KML circles are rendered). Currently, script doesn't  provide polygons
 
 
@@ -33,6 +33,7 @@ If you need data for the upcoming event, start with this page: https://innovate.
 - `map.py`: Contains core logic and functions for calculating coordinates and rendering the map. This is the central script that defines the geographic and structural parameters of the Burning Man event.
 - `kml_map.py`: Uses the functions from `map.py` to generate a KML file for viewing in Google Earth/Google My Maps/etc. It also packages the KML file into a KMZ archive, including any necessary icons, though I couldn't make icon work in Google My Maps
 - `svg_map.py`: Uses the functions from `map.py` to generate an vector file for printing or manufacturing.
+- BRCMapFusion360: a plugin that can generate a sketch for Autodesk Fusion 360 with a BRC map. Supports flipping the render and scaling based on the city circle diameter. Check hardcoded parameters inside
 
 
 ## Usage
