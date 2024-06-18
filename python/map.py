@@ -311,10 +311,9 @@ def generateCenterCamp(addLine, addArch, addCircle):
         angle = abAngleInTriangle(centerCampOuterRadius, manToCenterOfCenterCampInFeet, letterToDistance('a'))
         addArch(midnightBearing-angle, midnightBearing+angle, centerCampOuterRadius,  center, "Center Camp")
 
-        
-        # TODO: Add portal
-        # TODO: maybe break arch by portal
-
+        addLine(distanceToCoordinate(manToCenterOfCenterCampInFeet - centerCampRadiusInsideInFeet,6,00), 
+                distanceToCoordinate(manToCenterOfCenterCampInFeet - centerCampOuterRadius,6,00), 
+                "Center Camp")
         return
     
     if YEAR == 2023:
