@@ -3,7 +3,7 @@
 from geopy.distance import distance as geopy_distance
 import math
 
-YEAR = 2023 # Important: Man moves, so you need to check the latest
+YEAR = 2024 # Important: Man moves, so you need to check the latest
 
 GOLDEN_STAKE = (40.786400, -119.203500)
 ELEVATION = 3904
@@ -94,12 +94,23 @@ Center Camp theme camp area radius: 320’ to inside and 763’ to outside
 (783’ radius to the center of the Rod’s Ring Road)
 """
 manToCenterOfCenterCampInFeet = 3026
-centerCampRadiusInsideInFeet = 320
+
+centerCampRadiusInsideInFeet = 320  # canopy
 centerCampRadiusOutsideInFeet = 763
 centerCampRadiusToRodsRingInFeet = 783
 
-centerCampCrossings = ['esplanade', 'a', 'b', 'c']
-centerCampStreetName = "Rod’s Ring Road"
+centerCampStreetCrossRadius = 1 # some default setting
+centerCampOuterRadius = centerCampRadiusToRodsRingInFeet # outer radius of center camp that look into playa
+
+# defining the center camp circle road that breaks letter streets:
+if YEAR == 2023:
+    centerCampStreetName = "Rod’s Ring Road"  
+    centerCampStreetCrossRadius = centerCampRadiusToRodsRingInFeet 
+if YEAR == 2024:
+    centerCampStreetName = "Center Camp"  
+    centerCampStreetCrossRadius = centerCampRadiusInsideInFeet # 2024
+
+        
 
 """
 There are five plaza portals to the Esplanade: at 6:00 (Center Camp), 3:00, 4:30, 7:30, and
@@ -124,14 +135,15 @@ of mid-city plazas at 3:00, 4:30, 6:00, 7:30, and 9:00 are at Grootslang, center
 from the Man.
 """
 plazaToManInFeet = 4880
-plazaWidth = 4 * streetWidthInFeet
-plazasCrossings = ['a', 'b', 'g']
+plazaWidth = 4 * streetWidthInFeet # magical number
+
+if YEAR == 2024: # again, this is something new in 2024
+    plazaOuterWidth = 2*(depthAtoIInFeet + streetWidthInFeet)
 
 # TODO: create formatName function and use it here to name plazas
 plazas = [
     (3, 00, letterToDistance('b'), plazaWidth, "3:00 & B Plaza"),
     (4, 30, letterToDistance('b'), plazaWidth, "4:30 & B Plaza"),
-#     (6, 00, manToCenterOfCenterCampInFeet, centerCampRadiusToRodsRingInFeet * 2, "Center camp"),
     (7, 30, letterToDistance('b'), plazaWidth, "7:30 & B Plaza"),
     (9, 00, letterToDistance('b'), plazaWidth, "9:00 & B Plaza"),
 
@@ -182,28 +194,31 @@ breakForPlazas = true also forces breakForCenterCamp
 """
 def generateLetterStreet(letter, addArch, breakForPlazas=True, breakForCenterCamp=None):
     letter = letter.lower()
-    archRadius = distanceToStreetCenter[letter]
+    archRadius = letterToDistance(letter)
 
     archAngles = [bearing(2, 00)]
     if breakForPlazas:
         breakForCenterCamp = True # force
-        if letter in plazasCrossings:
-            # find angle at which plazas cross the street
-            for (hour, minute, distance, width, name) in plazas:
-                angle = plazaAngle(archRadius, distance, width)
-                if angle is None:
-                    continue
-                plazaCenter = bearing(hour, minute)
-                archAngles.append(plazaCenter - angle)
-                archAngles.append(plazaCenter + angle)
+        # find angle at which plazas cross the street
+        for (hour, minute, distance, width, name) in plazas:
+            angle = plazaAngle(archRadius, distance, width)
+            if angle is None: # does not cross
+                continue 
+            plazaCenter = bearing(hour, minute)
+            archAngles.append(plazaCenter - angle)
+            archAngles.append(plazaCenter + angle)
 
 
-    if breakForCenterCamp and (letter in centerCampCrossings):
-        angle = plazaAngle(archRadius, manToCenterOfCenterCampInFeet, centerCampRadiusToRodsRingInFeet * 2)
+    if breakForCenterCamp: # here we will check if street breaks for center camp
+        angle = plazaAngle(archRadius, manToCenterOfCenterCampInFeet, centerCampStreetCrossRadius * 2)
+        if letter=='esplanade': # special treatment - outer circle of center camp
+            angle = plazaAngle(archRadius, manToCenterOfCenterCampInFeet, centerCampOuterRadius * 2)
+
         if not angle is None:
             centerCampBearing = bearing(6, 00)
             archAngles.append(centerCampBearing - angle)
             archAngles.append(centerCampBearing + angle)
+
     archAngles.append(bearing(10, 00))
 
     prevAngle = None
@@ -232,8 +247,9 @@ def generateRadialStreet(streetHour, streetMinute, addLine, breakForPlazas=True,
         breakForCenterCamp = True;
      
     if breakForCenterCamp and not shortStreet:
-        if (streetHour == 6 or (streetHour == 5 and streetMinute == 30)):
-            linePoints = [ distanceToCoordinate (manToCenterOfCenterCampInFeet + centerCampRadiusToRodsRingInFeet, streetHour, streetMinute) ]
+        angle = plazaAngle(manToCenterOfCenterCampInFeet, manToCenterOfCenterCampInFeet, centerCampStreetCrossRadius * 2)
+        if abs(bearing(streetHour, streetMinute) - bearing(6,00)) < angle: # check if street crosses the circle
+            linePoints = [ distanceToCoordinate (manToCenterOfCenterCampInFeet + centerCampStreetCrossRadius, streetHour, streetMinute) ]
       
     if breakForPlazas:
         # find angle at which plazas cross the street
@@ -279,19 +295,28 @@ def generatePlazas(addCircle):
     for (hour, minute, distance, width, name) in plazas:
         center = distanceToCoordinate(distance, hour, minute)
         addCircle(center, width, name)
+        if plazaOuterWidth:
+            addCircle(center, plazaOuterWidth, name)
 
 def generateCenterCamp(addLine, addArch, addCircle):
-    #  Rod’s Ring Road around the center camp
+
+    center = distanceToCoordinate(manToCenterOfCenterCampInFeet, 6, 00)
+    addCircle(center, centerCampRadiusInsideInFeet*2, "Center Camp") # so far seems to be constant
+
     if YEAR == 2024:
+
+        angle = plazaAngle(letterToDistance('a'), manToCenterOfCenterCampInFeet, centerCampOuterRadius * 2)
+        # this angle is from man vision, not from the center!
+
+        addArch(midnightBearing-angle, midnightBearing+angle, centerCampOuterRadius,  "Center Camp")
+
         return
     
     if YEAR == 2023:
-        center = distanceToCoordinate(manToCenterOfCenterCampInFeet, 6, 00)
-        addCircle(center, centerCampRadiusToRodsRingInFeet*2, centerCampStreetName)
-        addCircle(center, centerCampRadiusInsideInFeet*2, "Center Camp")
+        addCircle(center, centerCampOuterRadius*2, centerCampStreetName)
 
         addLine(distanceToCoordinate(manToCenterOfCenterCampInFeet + centerCampRadiusInsideInFeet,6,00), 
-                distanceToCoordinate(manToCenterOfCenterCampInFeet + centerCampRadiusToRodsRingInFeet,6,00), 
+                distanceToCoordinate(manToCenterOfCenterCampInFeet + centerCampOuterRadius,6,00), 
                 "Center Camp")
         
         magicalAngle = 150/2 # something approximate, I wasn't able to find it in the spec
@@ -306,7 +331,7 @@ def generateCenterCamp(addLine, addArch, addCircle):
 
 def renderPromenades(addLine):
     addLine( 
-        distanceToCoordinate(manToCenterOfCenterCampInFeet - centerCampRadiusToRodsRingInFeet, 6, 00),
+        distanceToCoordinate(manToCenterOfCenterCampInFeet - centerCampOuterRadius, 6, 00),
         distanceToCoordinate(manRadiusInFeet, 6, 00),
         "6:00 Promenade"
     )
