@@ -1242,7 +1242,7 @@
                 </Polygon>
             </Placemark>
             <Placemark id="352">
-                <name>Central Camp</name>
+                <name>Center Camp</name>
                 <styleUrl>#357</styleUrl>
                 <Polygon id="351">
                     <outerBoundaryIs>
@@ -1253,21 +1253,21 @@
                 </Polygon>
             </Placemark>
             <Placemark id="360">
-                <name>Central Camp</name>
+                <name>Center Camp</name>
                 <styleUrl>#361</styleUrl>
                 <LineString id="359">
                     <coordinates>-119.21204297595068,40.77990574126378,3904 -119.21322497215974,40.77900705316418,3904</coordinates>
                 </LineString>
             </Placemark>
             <Placemark id="364">
-                <name>Central Camp</name>
+                <name>Center Camp</name>
                 <styleUrl>#365</styleUrl>
                 <LineString id="363">
                     <coordinates>-119.21269374015228,40.78236490129705,3904 -119.21180375997545,40.78128749464211,3904</coordinates>
                 </LineString>
             </Placemark>
             <Placemark id="368">
-                <name>Central Camp</name>
+                <name>Center Camp</name>
                 <styleUrl>#369</styleUrl>
                 <LineString id="367">
                     <coordinates>-119.20880777323713,40.77941151452552,3904 -119.2102253818812,40.78008769842853,3904</coordinates>

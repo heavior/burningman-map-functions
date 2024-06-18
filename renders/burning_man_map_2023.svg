@@ -187,11 +187,11 @@
   <g id="Rod’s Ring Road">
 <circle id="Rod’s Ring Road circle_0" cx="-213.55752800918032" cy="214.38270039967634" r="78.3" fill="none" stroke="black" />
 </g>
-  <g id="Central Camp">
-<circle id="Central Camp circle_0" cx="-213.55752800918032" cy="214.38270039967634" r="32.0" fill="none" stroke="black" />
-  <line id="Central Camp line_0" x1="-236.14126762594788" y1="237.05371063188892" x2="-268.81711444170304" y2="269.8558299966688" stroke="black" />
-  <line id="Central Camp line_1" x1="-254.36539208855373" y1="147.4253957349878" x2="-229.61620692704383" y2="186.68989445203857" stroke="black" />
-  <line id="Central Camp line_2" x1="-146.57503586170645" y1="254.85634946433532" x2="-185.82518789796126" y2="230.32371585262248" stroke="black" />
+  <g id="Center Camp">
+<circle id="Center Camp circle_0" cx="-213.55752800918032" cy="214.38270039967634" r="32.0" fill="none" stroke="black" />
+  <line id="Center Camp line_0" x1="-236.14126762594788" y1="237.05371063188892" x2="-268.81711444170304" y2="269.8558299966688" stroke="black" />
+  <line id="Center Camp line_1" x1="-254.36539208855373" y1="147.4253957349878" x2="-229.61620692704383" y2="186.68989445203857" stroke="black" />
+  <line id="Center Camp line_2" x1="-146.57503586170645" y1="254.85634946433532" x2="-185.82518789796126" y2="230.32371585262248" stroke="black" />
 </g>
   <g id="6:00 Promenade">
 <line id="6:00 Promenade line_0" x1="-158.29793670096416" y1="158.90957565915505" x2="-28.229684019834743" y2="28.338753327624325" stroke="black" />
