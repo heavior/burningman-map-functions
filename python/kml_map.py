@@ -54,8 +54,8 @@ def renderKmlCircle(radius, center):
     return coords
 
 # Function to add arches to the KML file
-def addKmlArch(startAngle, endAngle, archRadius, name):
-    coords = renderKmlArch(startAngle, endAngle, archRadius, GOLDEN_STAKE)
+def addKmlArch(startAngle, endAngle, archRadius, center, name):
+    coords = renderKmlArch(startAngle, endAngle, archRadius, center)
     
     # Create a line for the arch
     line = kml_folder.newlinestring(name=name)

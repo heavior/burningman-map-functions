@@ -226,7 +226,7 @@ def generateLetterStreet(letter, addArch, breakForPlazas=True, breakForCenterCam
         if prevAngle is None:
             prevAngle = currentAngle
             continue
-        addArch(prevAngle, currentAngle, archRadius, letter)
+        addArch(prevAngle, currentAngle, archRadius, GOLDEN_STAKE, letter)
         prevAngle = None
 
 def generateLetterStreets(addArch):
@@ -308,7 +308,7 @@ def generateCenterCamp(addLine, addArch, addCircle):
         angle = plazaAngle(letterToDistance('a'), manToCenterOfCenterCampInFeet, centerCampOuterRadius * 2)
         # this angle is from man vision, not from the center!
 
-        addArch(midnightBearing-angle, midnightBearing+angle, centerCampOuterRadius,  "Center Camp")
+        addArch(midnightBearing-angle, midnightBearing+angle, centerCampOuterRadius,  center, "Center Camp")
 
         return
     

@@ -147,8 +147,8 @@ def add_heart(sketch, center, size, name):
     # Create top right arc
     top_right_arc = sketch.sketchCurves.sketchArcs.addByThreePoints(right_bottom, right_top, center_point)
 
-def add_fusion_arch(sketch, startAngle, endAngle, archRadius, name):
-    centerX, centerY = point_to_cm(GOLDEN_STAKE)
+def add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name):
+    centerX, centerY = point_to_cm(center)
     radius_cm = archRadius / FEET_PER_CM
 
     start_angle_rad = math.radians(startAngle)

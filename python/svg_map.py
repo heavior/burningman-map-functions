@@ -16,7 +16,19 @@ max_distance = 0
 def sanitize_name(name):
     return name.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;").replace("'", "&apos;")
 
-def addSVGArch(startAngle, endAngle, archRadius, name):
+
+def convertGeoToXY(coordinates):
+    distance = geodesic(GOLDEN_STAKE, coordinates).feet
+    bearing = calculate_bearing(GOLDEN_STAKE, coordinates)
+    angle = bearing + SVG_ANGLE_TURN
+    angleRad = math.radians(angle)
+    x = distance * math.cos(angleRad) / SVG_FEET_PER_PIXEL
+    y = distance * math.sin(angleRad) / SVG_FEET_PER_PIXEL
+    return x, y
+
+
+def addSVGArch(startAngle, endAngle, archRadius, center, name):
+    x, y = convertGeoToXY(center)
     name = sanitize_name(name)
     if name not in element_counters["arch"]:
         element_counters["arch"][name] = 0
@@ -26,10 +38,10 @@ def addSVGArch(startAngle, endAngle, archRadius, name):
     startAngleRad = math.radians(startAngle + SVG_ANGLE_TURN)
     endAngleRad = math.radians(endAngle + SVG_ANGLE_TURN)
     
-    startX = archRadius * math.cos(startAngleRad) / SVG_FEET_PER_PIXEL
-    startY = archRadius * math.sin(startAngleRad) / SVG_FEET_PER_PIXEL
-    endX = archRadius * math.cos(endAngleRad) / SVG_FEET_PER_PIXEL
-    endY = archRadius * math.sin(endAngleRad) / SVG_FEET_PER_PIXEL
+    startX = x + archRadius * math.cos(startAngleRad) / SVG_FEET_PER_PIXEL
+    startY = y + archRadius * math.sin(startAngleRad) / SVG_FEET_PER_PIXEL
+    endX = x + archRadius * math.cos(endAngleRad) / SVG_FEET_PER_PIXEL
+    endY = y + archRadius * math.sin(endAngleRad) / SVG_FEET_PER_PIXEL
     
     large_arc_flag = 1 if endAngle - startAngle > 180 else 0
     
@@ -71,15 +83,6 @@ def calculate_bearing(pointA, pointB):
     initial_bearing = math.degrees(initial_bearing)
     compass_bearing = (initial_bearing + 360) % 360
     return compass_bearing
-
-def convertGeoToXY(coordinates):
-    distance = geodesic(GOLDEN_STAKE, coordinates).feet
-    bearing = calculate_bearing(GOLDEN_STAKE, coordinates)
-    angle = bearing + SVG_ANGLE_TURN
-    angleRad = math.radians(angle)
-    x = distance * math.cos(angleRad) / SVG_FEET_PER_PIXEL
-    y = distance * math.sin(angleRad) / SVG_FEET_PER_PIXEL
-    return x, y
 
 def addSVGCircle(location, width, name):
     name = sanitize_name(name)
