@@ -135,23 +135,26 @@ of mid-city plazas at 3:00, 4:30, 6:00, 7:30, and 9:00 are at Grootslang, center
 from the Man.
 """
 plazaToManInFeet = 4880
-plazaWidth = 4 * streetWidthInFeet # magical number
+plazaWidth = 5 * streetWidthInFeet # magical number
 
-if YEAR == 2024: # again, this is something new in 2024
-    plazaOuterWidth = 2*(depthAtoIInFeet + streetWidthInFeet)
+plazaOuterWidth = 0 # defines circles around plazas on the map
+plazaOuterWidth6 = 2*(depthAtoIInFeet + streetWidthInFeet) # plaza behind center camp
+
+if YEAR == 2023: # in 2023, circles were around each plaza
+    plazaOuterWidth = plazaOuterWidth6
 
 # TODO: create formatName function and use it here to name plazas
 plazas = [
-    (3, 00, letterToDistance('b'), plazaWidth, "3:00 & B Plaza"),
-    (4, 30, letterToDistance('b'), plazaWidth, "4:30 & B Plaza"),
-    (7, 30, letterToDistance('b'), plazaWidth, "7:30 & B Plaza"),
-    (9, 00, letterToDistance('b'), plazaWidth, "9:00 & B Plaza"),
+    (3, 00, letterToDistance('b'), plazaWidth, plazaOuterWidth, "3:00 & B Plaza"),
+    (4, 30, letterToDistance('b'), plazaWidth, plazaOuterWidth, "4:30 & B Plaza"),
+    (7, 30, letterToDistance('b'), plazaWidth, plazaOuterWidth, "7:30 & B Plaza"),
+    (9, 00, letterToDistance('b'), plazaWidth, plazaOuterWidth, "9:00 & B Plaza"),
 
-    (3, 00, letterToDistance('g'), plazaWidth, "3:00 & G Plaza"),
-    (4, 30, letterToDistance('g'), plazaWidth, "4:30 & G Plaza"),
-    (6, 00, letterToDistance('g'), plazaWidth, "6:00 & G Plaza"),
-    (7, 30, letterToDistance('g'), plazaWidth, "7:30 & G Plaza"),
-    (9, 00, letterToDistance('g'), plazaWidth, "9:00 & G Plaza"),
+    (3, 00, letterToDistance('g'), plazaWidth, plazaOuterWidth, "3:00 & G Plaza"),
+    (4, 30, letterToDistance('g'), plazaWidth, plazaOuterWidth, "4:30 & G Plaza"),
+    (6, 00, letterToDistance('g'), plazaWidth, plazaOuterWidth6, "6:00 & G Plaza"),
+    (7, 30, letterToDistance('g'), plazaWidth, plazaOuterWidth, "7:30 & G Plaza"),
+    (9, 00, letterToDistance('g'), plazaWidth, plazaOuterWidth, "9:00 & G Plaza"),
 ]
 
 ### WHERE IS TEMPLE?
@@ -180,12 +183,12 @@ def letterBearingToCoordinate(letter, bearing):
 
 
 # function defines plaza/circle width
-def plazaAngle(streetDistance, plazaDistance, plazaWidth):
+def abAngleInTriangle(streetDistance, plazaDistance, plazaRadius):
     # cos theorem:
     # (plazaWidth/2)^2 = plazaDistance^2 + streetDistance^2 - 2*plazaDistance*streetDistance* cos (alpha)
-    if plazaWidth/2 <= abs(streetDistance - plazaDistance):
+    if plazaRadius <= abs(streetDistance - plazaDistance):
         return None  # no crossing
-    return math.degrees(math.acos(-((plazaWidth / 2) ** 2 - plazaDistance ** 2 - streetDistance ** 2) / (2 * plazaDistance * streetDistance)))
+    return math.degrees(math.acos(-(plazaRadius ** 2 - plazaDistance ** 2 - streetDistance ** 2) / (2 * plazaDistance * streetDistance)))
 
 """
 Letter streets are arches
@@ -200,8 +203,8 @@ def generateLetterStreet(letter, addArch, breakForPlazas=True, breakForCenterCam
     if breakForPlazas:
         breakForCenterCamp = True # force
         # find angle at which plazas cross the street
-        for (hour, minute, distance, width, name) in plazas:
-            angle = plazaAngle(archRadius, distance, width)
+        for (hour, minute, distance, width, outerWidth, name) in plazas:
+            angle = abAngleInTriangle(archRadius, distance, width / 2)
             if angle is None: # does not cross
                 continue 
             plazaCenter = bearing(hour, minute)
@@ -210,9 +213,10 @@ def generateLetterStreet(letter, addArch, breakForPlazas=True, breakForCenterCam
 
 
     if breakForCenterCamp: # here we will check if street breaks for center camp
-        angle = plazaAngle(archRadius, manToCenterOfCenterCampInFeet, centerCampStreetCrossRadius * 2)
         if letter=='esplanade': # special treatment - outer circle of center camp
-            angle = plazaAngle(archRadius, manToCenterOfCenterCampInFeet, centerCampOuterRadius * 2)
+            angle = abAngleInTriangle(archRadius, manToCenterOfCenterCampInFeet, centerCampOuterRadius)
+        else:
+            angle = abAngleInTriangle(archRadius, manToCenterOfCenterCampInFeet, centerCampStreetCrossRadius)
 
         if not angle is None:
             centerCampBearing = bearing(6, 00)
@@ -247,13 +251,13 @@ def generateRadialStreet(streetHour, streetMinute, addLine, breakForPlazas=True,
         breakForCenterCamp = True;
      
     if breakForCenterCamp and not shortStreet:
-        angle = plazaAngle(manToCenterOfCenterCampInFeet, manToCenterOfCenterCampInFeet, centerCampStreetCrossRadius * 2)
+        angle = abAngleInTriangle(manToCenterOfCenterCampInFeet, manToCenterOfCenterCampInFeet, centerCampStreetCrossRadius)
         if abs(bearing(streetHour, streetMinute) - bearing(6,00)) < angle: # check if street crosses the circle
             linePoints = [ distanceToCoordinate (manToCenterOfCenterCampInFeet + centerCampStreetCrossRadius, streetHour, streetMinute) ]
       
     if breakForPlazas:
         # find angle at which plazas cross the street
-        for (hour, minute, distance, width, name) in plazas:
+        for (hour, minute, distance, width, outerWidth, name) in plazas:
             if (streetHour != hour) or (streetMinute != minute):
                 continue
 
@@ -292,11 +296,11 @@ def generateRadialStreets(addLine):
 
 
 def generatePlazas(addCircle):
-    for (hour, minute, distance, width, name) in plazas:
+    for (hour, minute, distance, width, outerWidth, name) in plazas:
         center = distanceToCoordinate(distance, hour, minute)
         addCircle(center, width, name)
-        if plazaOuterWidth:
-            addCircle(center, plazaOuterWidth, name)
+        if outerWidth:
+            addCircle(center, outerWidth, name)
 
 def generateCenterCamp(addLine, addArch, addCircle):
 
@@ -304,11 +308,12 @@ def generateCenterCamp(addLine, addArch, addCircle):
     addCircle(center, centerCampRadiusInsideInFeet*2, "Center Camp") # so far seems to be constant
 
     if YEAR == 2024:
-
-        angle = plazaAngle(letterToDistance('a'), manToCenterOfCenterCampInFeet, centerCampOuterRadius * 2)
-        # this angle is from man vision, not from the center!
-
+        angle = abAngleInTriangle(centerCampOuterRadius, manToCenterOfCenterCampInFeet, letterToDistance('a'))
         addArch(midnightBearing-angle, midnightBearing+angle, centerCampOuterRadius,  center, "Center Camp")
+
+        
+        # TODO: Add portal
+        # TODO: maybe break arch by portal
 
         return
     
