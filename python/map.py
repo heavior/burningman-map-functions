@@ -1,5 +1,3 @@
-
-
 from geopy.distance import distance as geopy_distance
 import math
 
@@ -210,7 +208,6 @@ def generateLetterStreet(letter, addArch, breakForPlazas=True, breakForCenterCam
             plazaCenter = bearing(hour, minute)
             archAngles.append(plazaCenter - angle)
             archAngles.append(plazaCenter + angle)
-
 
     if breakForCenterCamp: # here we will check if street breaks for center camp
         if letter=='esplanade': # special treatment - outer circle of center camp
