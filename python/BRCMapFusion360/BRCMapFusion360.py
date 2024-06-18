@@ -1,15 +1,20 @@
-import sys
-import os
+import sys, os, math
 import adsk.core, adsk.fusion, traceback
-from geopy.distance import geodesic
 
 # Add the parent directory to the system path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
+dependencies_dir = os.path.join(current_dir, 'dependencies')
 sys.path.append(parent_dir)
+sys.path.append(dependencies_dir)
 
+def log_message(message):
+    log_file = os.path.join(current_dir, "plugin_log.txt")
+    with open(log_file, "a") as f:
+        f.write(message + "\n")
+
+from geopy.distance import geodesic
 from map import renderMap, GOLDEN_STAKE, diameterKInFeet
-import math
 
 # Global variables
 HEIGHT_Z = 0
@@ -24,10 +29,6 @@ app = adsk.core.Application.get()
 ui = app.userInterface
 design = app.activeProduct
 
-def log_message(message):
-    log_file = os.path.join(current_dir, "plugin_log.txt")
-    with open(log_file, "a") as f:
-        f.write(message + "\n")
 
 def calculate_bearing(pointA, pointB):
     """
@@ -197,7 +198,7 @@ def render_map():
         log_message("Starting the render_map function")
         sketch = find_or_create_sketch()
         renderMap(
-            lambda startAngle, endAngle, archRadius, name: add_fusion_arch(sketch, startAngle, endAngle, archRadius, name),
+            lambda startAngle, endAngle, archRadius, center, name: add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name),
             lambda startCoordinates, endCoordinates, name: add_fusion_line(sketch, startCoordinates, endCoordinates, name),
             lambda location, width, name: add_fusion_circle(sketch, location, width, name),
             lambda location, width, name: add_fusion_circle(sketch, location, width, name),  # addMan
