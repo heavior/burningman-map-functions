@@ -21,7 +21,6 @@ FLIP_Z = True
 MIRROR_X = True
 SKETCH_NAME = "BRC map"
 CITY_DIAMETER_CM = 4.7  # Diameter of the city in centimeters
-FEET_PER_CM = diameterKInFeet / CITY_DIAMETER_CM
 MOVE_X = 0
 MOVE_Y = 0
 MOVE_Z = 0
@@ -187,7 +186,8 @@ def add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_
     radius = width / 2
     add_circle(sketch, location, radius, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z)
 
-def render_map(sketch, flip_z, mirror_x, city_diameter_cm, feet_per_cm, move_x, move_y, move_z):
+def render_map(sketch, flip_z, mirror_x, city_diameter_cm, move_x, move_y, move_z):
+    feet_per_cm = diameterKInFeet / city_diameter_cm
     log_message("Starting the render_map function")
     renderMap(
         lambda startAngle, endAngle, archRadius, center, name: add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
@@ -207,7 +207,7 @@ def run(context):
         
         origin = adsk.core.Point3D.create(0, 0, 0)
         sketch = find_or_create_sketch(design, SKETCH_NAME, origin)
-        render_map(sketch, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, FEET_PER_CM, move_x=MOVE_X, move_y=MOVE_Y, move_z=MOVE_Z)
+        render_map(sketch, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, move_x=MOVE_X, move_y=MOVE_Y, move_z=MOVE_Z)
     except:
         if ui:
             ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
