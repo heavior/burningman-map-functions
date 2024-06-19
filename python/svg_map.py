@@ -8,10 +8,15 @@ STROKE_COLOR = "black"
 SVG_ANGLE_TURN = -90
 SVG_FEET_PER_PIXEL = 10
 
+LOWER_NUMBERS_FOLLOW_CLOCK = False
+HOUR_FONT_SIZE = "24px"
+HOUR_FONT = "Reef"
+
 # SVG generation
 svg_groups = {}
 element_counters = {"arch": {}, "line": {}, "circle": {}, 'icon': {}}
 max_distance = 0
+
 
 def sanitize_name(name):
     return name.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;").replace("'", "&apos;")
@@ -156,7 +161,33 @@ def addTemple(location, width, name):
     else:
         addSVGCircle(location, width, name)
 
-renderMap(addSVGArch, addSVGLine, addSVGCircle, addMan, addTemple)
+
+def addHourLabel(hour, minute, location, bearing):
+    if minute > 0:
+        return
+
+    roman_numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
+    text = roman_numerals[hour - 1]  # Adjusting for hours starting at 1
+
+    x, y = convertGeoToXY(location)
+
+    if not LOWER_NUMBERS_FOLLOW_CLOCK and 90 < bearing < 270:
+        bearing += 180
+
+    # Create the SVG text element
+    text_element = f'''
+    <text x="{x}" y="{y}" transform="rotate({bearing}, {x}, {y})" text-anchor="middle" fill="{STROKE_COLOR}" font-size="{HOUR_FONT_SIZE}" font-family="{HOUR_FONT}">
+        {text}
+    </text>
+    '''
+
+    if "hour_labels" not in svg_groups:
+        svg_groups["hour_labels"] = []
+    svg_groups["hour_labels"].append(text_element)
+
+
+
+renderMap(addSVGArch, addSVGLine, addSVGCircle, addMan, addTemple, addHourLabel, 1.5)
 
 # Generate the SVG content
 svg_group_elements = []

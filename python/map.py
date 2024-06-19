@@ -234,13 +234,9 @@ def generateLetterStreets(addArch):
     for key in streetDepths:
         generateLetterStreet(key, addArch)
 
-
-
 def generateRadialStreet(streetHour, streetMinute, addLine, breakForPlazas=True, breakForCenterCamp=None):
-
     shortStreet =  streetMinute % 30 == 15
     startAt = "esplanade" if not shortStreet else quaterHourStreetsStartAt
-
 
     linePoints = [addressToCoordinate(startAt, streetHour, streetMinute)]
 
@@ -280,7 +276,6 @@ def generateRadialStreet(streetHour, streetMinute, addLine, breakForPlazas=True,
         start = None
     pass
 
-
 def generateRadialStreets(addLine):
     firstStreetTime = 2*60
     lastStreetTime = 10*60
@@ -290,6 +285,31 @@ def generateRadialStreets(addLine):
     while currentStreetTime <= lastStreetTime:
         generateRadialStreet(math.floor(currentStreetTime/60), currentStreetTime%60, addLine)
         currentStreetTime += streetStep
+
+# this function will place hour labels. It will also place the 12 hour mark above man, so the renderer needs to decide what to do with it
+def generateRadialStreetNames(addHourLabel, extendByFeet=0):
+
+    firstStreetTime = 2*60
+    lastStreetTime = 10*60
+    streetStep = 15
+
+    currentStreetTime = firstStreetTime
+
+    radialStreetNameDistance = diameterKInFeet/2 + extendByFeet
+
+    while currentStreetTime <= lastStreetTime:
+        hour = math.floor(currentStreetTime/60)
+        minute = currentStreetTime%60
+        rotation = bearing(hour, minute)
+        coordinate = distanceBearingToCoordinate(radialStreetNameDistance, rotation)
+        addHourLabel(hour, minute, coordinate, rotation)
+        currentStreetTime += streetStep
+
+    rotation = bearing(12, 0)
+    coordinate = distanceBearingToCoordinate(radialStreetNameDistance, rotation)
+    addHourLabel(12, 0, coordinate, rotation)
+
+
 
 
 def generatePlazas(addCircle):
@@ -365,7 +385,7 @@ def renderTrashFence(addLine):
         lastPoint = point
 
     
-def renderMap(addArch, addLine, addCircle, addMan, addTemple):
+def renderMap(addArch, addLine, addCircle, addMan, addTemple, addHourLabel = None, extendRadialNamesByBlocks=0):
     """ Missing elements:
     Portals
     Airport
@@ -378,4 +398,6 @@ def renderMap(addArch, addLine, addCircle, addMan, addTemple):
     renderPromenades(addLine)
     renderManAndTemple(addMan,addTemple) 
     renderTrashFence(addLine)
+    if not addHourLabel is None:
+        generateRadialStreetNames(addHourLabel, extendRadialNamesByBlocks * depthAtoIInFeet)
    

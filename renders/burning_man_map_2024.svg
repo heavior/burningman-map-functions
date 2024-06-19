@@ -217,4 +217,56 @@
   <line id="Trash Fence line_3" x1="596.0020092447924" y1="-595.8943543610251" x2="749.7845117474778" y2="385.1785573983302" stroke="black" />
   <line id="Trash Fence line_4" x1="749.7845117474778" y1="385.1785573983302" x2="-132.49712993773085" y2="832.2918996463941" stroke="black" />
 </g>
+  <g id="hour_labels">
+
+    <text x="600.6500513607918" y="161.56582497708973" transform="rotate(285.0, 600.6500513607918, 161.56582497708973)" text-anchor="middle" fill="black" font-size="24px" font-family="Reef">
+        II
+    </text>
+    
+  
+    <text x="438.97144255848343" y="440.6677576340385" transform="rotate(315.0, 438.97144255848343, 440.6677576340385)" text-anchor="middle" fill="black" font-size="24px" font-family="Reef">
+        III
+    </text>
+    
+  
+    <text x="160.40706203613348" y="600.9605431713296" transform="rotate(345.0, 160.40706203613348, 600.9605431713296)" text-anchor="middle" fill="black" font-size="24px" font-family="Reef">
+        IV
+    </text>
+    
+  
+    <text x="-160.40706203613365" y="600.9605431713296" transform="rotate(375.0, -160.40706203613365, 600.9605431713296)" text-anchor="middle" fill="black" font-size="24px" font-family="Reef">
+        V
+    </text>
+    
+  
+    <text x="-438.9714425584833" y="440.6677576340385" transform="rotate(405.0, -438.9714425584833, 440.6677576340385)" text-anchor="middle" fill="black" font-size="24px" font-family="Reef">
+        VI
+    </text>
+    
+  
+    <text x="-600.6500513607916" y="161.56582497709007" transform="rotate(435.0, -600.6500513607916, 161.56582497709007)" text-anchor="middle" fill="black" font-size="24px" font-family="Reef">
+        VII
+    </text>
+    
+  
+    <text x="-600.6502057269538" y="-161.56525109096978" transform="rotate(285.0, -600.6502057269538, -161.56525109096978)" text-anchor="middle" fill="black" font-size="24px" font-family="Reef">
+        VIII
+    </text>
+    
+  
+    <text x="-438.97175025944637" y="-440.667451116725" transform="rotate(315.0, -438.97175025944637, -440.667451116725)" text-anchor="middle" fill="black" font-size="24px" font-family="Reef">
+        IX
+    </text>
+    
+  
+    <text x="-160.407215374935" y="-600.9605022428152" transform="rotate(345.0, -160.407215374935, -600.9605022428152)" text-anchor="middle" fill="black" font-size="24px" font-family="Reef">
+        X
+    </text>
+    
+  
+    <text x="438.97175025944637" y="-440.667451116725" transform="rotate(45.0, 438.97175025944637, -440.667451116725)" text-anchor="middle" fill="black" font-size="24px" font-family="Reef">
+        XII
+    </text>
+    
+</g>
 </svg>
