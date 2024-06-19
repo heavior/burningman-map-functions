@@ -217,7 +217,7 @@ def add_fusion_hour_label(sketch_text, hour, minute, location, bearing, hour_fon
     bearing_rad = math.radians(bearing)
 
     # Length of the line
-    line_length = 2*hour_font_size  # Adjust this value if needed
+    line_length = hour_font_size  # Adjust this value if needed
 
     # Calculate point1 and point2 based on the bearing
     point1_x = x + (line_length / 2) * math.cos(bearing_rad)
