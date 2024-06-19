@@ -22,6 +22,9 @@ MIRROR_X = True
 SKETCH_NAME = "BRC map"
 CITY_DIAMETER_CM = 4.7  # Diameter of the city in centimeters
 FEET_PER_CM = diameterKInFeet / CITY_DIAMETER_CM
+MOVE_X = 0
+MOVE_Y = 0
+MOVE_Z = 0
 
 def calculate_bearing(pointA, pointB):
     """
@@ -61,13 +64,13 @@ def convertGeoToFeet(coordinates):
     y = distance * math.sin(angle)
     return x, y
 
-def point_to_cm(point, mirror_x, flip_z, feet_per_cm):
+def point_to_cm(point, mirror_x, flip_z, feet_per_cm, move_x, move_y):
     x, y = convertGeoToFeet(point)
     if mirror_x:
         x = -x
     if flip_z:
         y = -y
-    return [x / feet_per_cm, y / feet_per_cm]
+    return [x / feet_per_cm + move_x, y / feet_per_cm + move_y]
 
 def create_custom_plane(root_comp, origin, sketch_name):
     planes = root_comp.constructionPlanes
@@ -101,13 +104,13 @@ def find_or_create_sketch(design, sketch_name, origin):
     sketch.name = sketch_name
     return sketch
 
-def add_circle(sketch, location, radius, name, flip_z, mirror_x, feet_per_cm):
-    x, y = point_to_cm(location, mirror_x, flip_z, feet_per_cm)
-    circle = sketch.sketchCurves.sketchCircles.addByCenterRadius(adsk.core.Point3D.create(x, y, 0), radius / feet_per_cm)
+def add_circle(sketch, location, radius, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
+    x, y = point_to_cm(location, mirror_x, flip_z, feet_per_cm, move_x, move_y)
+    circle = sketch.sketchCurves.sketchCircles.addByCenterRadius(adsk.core.Point3D.create(x, y, move_z), radius / feet_per_cm)
     circle.name = name
 
-def add_heart(sketch, center, size, name, flip_z, mirror_x, feet_per_cm):
-    x, y = point_to_cm(center, mirror_x, flip_z, feet_per_cm)
+def add_heart(sketch, center, size, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
+    x, y = point_to_cm(center, mirror_x, flip_z, feet_per_cm, move_x, move_y)
     size = size / feet_per_cm
 
     if flip_z:
@@ -115,13 +118,13 @@ def add_heart(sketch, center, size, name, flip_z, mirror_x, feet_per_cm):
     if mirror_x:
         x = -x
 
-    center_point = adsk.core.Point3D.create(x, y, 0)
-    bottom_tip = adsk.core.Point3D.create(x, y - size, 0)
+    center_point = adsk.core.Point3D.create(x, y, move_z)
+    bottom_tip = adsk.core.Point3D.create(x, y - size, move_z)
 
-    left_bottom = adsk.core.Point3D.create(x - size * 0.5, y - size * 0.25, 0)
-    right_bottom = adsk.core.Point3D.create(x + size * 0.5, y - size * 0.25, 0)
-    left_top = adsk.core.Point3D.create(x - size * 0.25, y + size * 0.25, 0)
-    right_top = adsk.core.Point3D.create(x + size * 0.25, y + size * 0.25, 0)
+    left_bottom = adsk.core.Point3D.create(x - size * 0.5, y - size * 0.25, move_z)
+    right_bottom = adsk.core.Point3D.create(x + size * 0.5, y - size * 0.25, move_z)
+    left_top = adsk.core.Point3D.create(x - size * 0.25, y + size * 0.25, move_z)
+    right_top = adsk.core.Point3D.create(x + size * 0.25, y + size * 0.25, move_z)
 
     if mirror_x:
         left_bottom.x = -left_bottom.x
@@ -143,8 +146,8 @@ def add_heart(sketch, center, size, name, flip_z, mirror_x, feet_per_cm):
     sketch.sketchCurves.sketchArcs.addByThreePoints(left_bottom, left_top, center_point)
     sketch.sketchCurves.sketchArcs.addByThreePoints(right_bottom, right_top, center_point)
 
-def add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name, flip_z, mirror_x, feet_per_cm):
-    centerX, centerY = point_to_cm(center, mirror_x, flip_z, feet_per_cm)
+def add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
+    centerX, centerY = point_to_cm(center, mirror_x, flip_z, feet_per_cm, move_x, move_y)
     radius_cm = archRadius / feet_per_cm
 
     start_angle_rad = math.radians(startAngle)
@@ -162,43 +165,38 @@ def add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name, flip
         start_y = -start_y
         end_y = -end_y
 
-    start = adsk.core.Point3D.create(centerX + start_x, centerY + start_y, 0)
-    end = adsk.core.Point3D.create(centerX + end_x, centerY + end_y, 0)
+    start = adsk.core.Point3D.create(centerX + start_x, centerY + start_y, move_z)
+    end = adsk.core.Point3D.create(centerX + end_x, centerY + end_y, move_z)
 
     if flip_z and mirror_x:
-        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, 0), start, end)
+        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, move_z), start, end)
     elif flip_z:
-        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, 0), end, start)
+        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, move_z), end, start)
     else:
-        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, 0), start, end)
+        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, move_z), start, end)
 
-def add_fusion_line(sketch, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm):
-    startX, startY = point_to_cm(startCoordinates, mirror_x, flip_z, feet_per_cm)
-    endX, endY = point_to_cm(endCoordinates, mirror_x, flip_z, feet_per_cm)
-    start_point = adsk.core.Point3D.create(startX, startY, 0)
-    end_point = adsk.core.Point3D.create(endX, endY, 0)
+def add_fusion_line(sketch, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
+    startX, startY = point_to_cm(startCoordinates, mirror_x, flip_z, feet_per_cm, move_x, move_y)
+    endX, endY = point_to_cm(endCoordinates, mirror_x, flip_z, feet_per_cm, move_x, move_y)
+    start_point = adsk.core.Point3D.create(startX, startY, move_z)
+    end_point = adsk.core.Point3D.create(endX, endY, move_z)
     line = sketch.sketchCurves.sketchLines.addByTwoPoints(start_point, end_point)
     line.name = name
 
-def add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm):
+def add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
     radius = width / 2
-    add_circle(sketch, location, radius, name, flip_z, mirror_x, feet_per_cm)
+    add_circle(sketch, location, radius, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z)
 
-def render_map(sketch, flip_z, mirror_x, city_diameter_cm, feet_per_cm):
-    try:
-        log_message("Starting the render_map function")
-        renderMap(
-            lambda startAngle, endAngle, archRadius, center, name: add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name, flip_z, mirror_x, feet_per_cm),
-            lambda startCoordinates, endCoordinates, name: add_fusion_line(sketch, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm),
-            lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm),
-            lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm),  # addMan
-            lambda location, width, name: add_heart(sketch, location, width / 2, name, flip_z, mirror_x, feet_per_cm)  # addTemple
-        )
-        log_message("Finished rendering the map")
-    except:
-        if ui:
-            error_message = 'Failed:\n{}'.format(traceback.format_exc())
-            log_message(error_message)
+def render_map(sketch, flip_z, mirror_x, city_diameter_cm, feet_per_cm, move_x, move_y, move_z):
+    log_message("Starting the render_map function")
+    renderMap(
+        lambda startAngle, endAngle, archRadius, center, name: add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
+        lambda startCoordinates, endCoordinates, name: add_fusion_line(sketch, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
+        lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
+        lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addMan
+        lambda location, width, name: add_heart(sketch, location, width / 2, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z)  # addTemple
+    )
+    log_message("Finished rendering the map")
 
 def run(context):
     ui = None
@@ -209,7 +207,7 @@ def run(context):
         
         origin = adsk.core.Point3D.create(0, 0, 0)
         sketch = find_or_create_sketch(design, SKETCH_NAME, origin)
-        render_map(sketch, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, FEET_PER_CM)
+        render_map(sketch, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, FEET_PER_CM, move_x=MOVE_X, move_y=MOVE_Y, move_z=MOVE_Z)
     except:
         if ui:
             ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
