@@ -89,6 +89,10 @@ If you need data for the upcoming event, start with this page: https://innovate.
   - `addSVGIcon(filename, centerX, centerY, width, name, rotation=0)`: Adds an icon to the SVG file.
 
 
+## BRCMapFusuion360
+This is a plugin for Autodesk Fusion 360. Make sure that dependencies are available, you can install them to the `BRCMapFusuion360/dependencies` forlder
+See `plugin_log.txt` for errors if nothing works
+
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.

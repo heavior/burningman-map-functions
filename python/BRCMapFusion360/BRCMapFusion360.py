@@ -211,4 +211,6 @@ def render_map():
             log_message(error_message)
 
 # Run the rendering
-render_map()
+
+def run(context):
+    render_map()
