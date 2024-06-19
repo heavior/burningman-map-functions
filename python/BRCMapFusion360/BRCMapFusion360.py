@@ -17,13 +17,18 @@ from geopy.distance import geodesic
 from map import renderMap, GOLDEN_STAKE, diameterKInFeet
 
 # Global variables
-FLIP_Z = True
-MIRROR_X = True
+FLIP_Z = False
+MIRROR_X = False
 SKETCH_NAME = "BRC map"
 CITY_DIAMETER_CM = 4.7  # Diameter of the city in centimeters
 MOVE_X = 0
 MOVE_Y = 0
 MOVE_Z = 0
+HOUR_FONT_SIZE = .1  
+HOUR_FONT = "Reef"  
+LOWER_NUMBERS_FOLLOW_CLOCK = True  
+EXTEND_RADIAL_NAMES_BY_BLOCKS = 1.5
+
 
 def calculate_bearing(pointA, pointB):
     """
@@ -186,7 +191,48 @@ def add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_
     radius = width / 2
     add_circle(sketch, location, radius, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z)
 
-def render_map(sketch, flip_z, mirror_x, city_diameter_cm, move_x, move_y, move_z):
+
+def add_fusion_hour_label(sketch_text, hour, minute, location, bearing, hour_font_size, hour_font, lower_numbers_follow_clock, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
+    if minute > 0:
+        return
+
+    roman_numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
+    text = roman_numerals[hour - 1]  # Adjusting for hours starting at 1
+
+    x, y = point_to_cm(location, mirror_x, flip_z, feet_per_cm, move_x, move_y)
+
+    if not lower_numbers_follow_clock and 90 < bearing < 270:
+        bearing += 180
+
+    # Calculate the rotation in radians
+    bearing_rad = math.radians(bearing)
+
+    # Length of the line
+    line_length = hour_font_size  # Adjust this value if needed
+
+    # Calculate point1 and point2 based on the bearing
+    point1_x = x + (line_length / 2) * math.cos(bearing_rad)
+    point1_y = y + (line_length / 2) * math.sin(bearing_rad)
+    point2_x = x - (line_length / 2) * math.cos(bearing_rad)
+    point2_y = y - (line_length / 2) * math.sin(bearing_rad)
+
+    point1 = adsk.core.Point3D.create(point1_x, point1_y, move_z)
+    point2 = adsk.core.Point3D.create(point2_x, point2_y, move_z)
+
+    # Create the text input for Fusion 360
+    text_input = sketch_text.sketchTexts.createInput2(text, hour_font_size)
+    text_input.setAsMultiLine(point1,
+                              point2,
+                              adsk.core.HorizontalAlignments.CenterHorizontalAlignment,
+                              adsk.core.VerticalAlignments.MiddleVerticalAlignment, 0)
+    
+    text_input.fontName = hour_font
+
+    # Add the text to the sketch
+    sketch_text.sketchTexts.add(text_input)
+
+def render_map(sketch, sketch_text, flip_z, mirror_x, city_diameter_cm, move_x, move_y, move_z, 
+               hour_font_size, hour_font, lower_numbers_follow_clock, extend_radial_names_by_blocks):
     feet_per_cm = diameterKInFeet / city_diameter_cm
     log_message("Starting the render_map function")
     renderMap(
@@ -194,9 +240,13 @@ def render_map(sketch, flip_z, mirror_x, city_diameter_cm, move_x, move_y, move_
         lambda startCoordinates, endCoordinates, name: add_fusion_line(sketch, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
         lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
         lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addMan
-        lambda location, width, name: add_heart(sketch, location, width / 2, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z)  # addTemple
+        lambda location, width, name: add_heart(sketch, location, width / 2, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addTemple
+        lambda hour, minute, location, bearing: add_fusion_hour_label(
+            sketch_text, hour, minute, location, bearing, hour_font_size, hour_font, lower_numbers_follow_clock, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
+        extend_radial_names_by_blocks
     )
     log_message("Finished rendering the map")
+
 
 def run(context):
     ui = None
@@ -207,7 +257,10 @@ def run(context):
         
         origin = adsk.core.Point3D.create(0, 0, 0)
         sketch = find_or_create_sketch(design, SKETCH_NAME, origin)
-        render_map(sketch, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, MOVE_X, MOVE_Y, MOVE_Z)
+        sketch_text = sketch
+        render_map(sketch, sketch_text, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, MOVE_X, MOVE_Y, MOVE_Z, 
+                   HOUR_FONT_SIZE, HOUR_FONT, 
+                   LOWER_NUMBERS_FOLLOW_CLOCK, EXTEND_RADIAL_NAMES_BY_BLOCKS)
     except:
         if ui:
             ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
