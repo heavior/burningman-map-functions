@@ -207,7 +207,7 @@ def run(context):
         
         origin = adsk.core.Point3D.create(0, 0, 0)
         sketch = find_or_create_sketch(design, SKETCH_NAME, origin)
-        render_map(sketch, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, move_x=MOVE_X, move_y=MOVE_Y, move_z=MOVE_Z)
+        render_map(sketch, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, MOVE_X, MOVE_Y, MOVE_Z)
     except:
         if ui:
             ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
