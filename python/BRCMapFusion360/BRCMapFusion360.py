@@ -24,9 +24,9 @@ CITY_DIAMETER_CM = 4.7  # Diameter of the city in centimeters
 MOVE_X = 0
 MOVE_Y = 0
 MOVE_Z = 0
-HOUR_FONT_SIZE = .1  
+HOUR_FONT_SIZE = .3  
 HOUR_FONT = "Reef"  
-LOWER_NUMBERS_FOLLOW_CLOCK = True  
+LOWER_NUMBERS_FOLLOW_CLOCK = False  
 EXTEND_RADIAL_NAMES_BY_BLOCKS = 1.5
 
 
@@ -64,8 +64,8 @@ def convertGeoToFeet(coordinates):
     distance = geodesic(GOLDEN_STAKE, coordinates).feet
     bearing = calculate_bearing(GOLDEN_STAKE, coordinates)
     angle = math.radians(bearing)
-    x = distance * math.cos(angle)
-    y = distance * math.sin(angle)
+    x = distance * math.sin(angle)
+    y = distance * math.cos(angle)
     return x, y
 
 def point_to_cm(point, mirror_x, flip_z, feet_per_cm, move_x, move_y):
@@ -172,19 +172,20 @@ def add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name, flip
     start = adsk.core.Point3D.create(centerX + start_x, centerY + start_y, move_z)
     end = adsk.core.Point3D.create(centerX + end_x, centerY + end_y, move_z)
 
+    center = adsk.core.Point3D.create(centerX, centerY, move_z)
     if flip_z and mirror_x:
-        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, move_z), start, end)
+        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(center, start, end)
     elif flip_z:
-        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, move_z), end, start)
+        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(center, end, start)
     else:
-        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(adsk.core.Point3D.create(centerX, centerY, move_z), start, end)
+        arc = sketch.sketchCurves.sketchArcs.addByCenterStartEnd(center, start, end)
 
 def add_fusion_line(sketch, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
     startX, startY = point_to_cm(startCoordinates, mirror_x, flip_z, feet_per_cm, move_x, move_y)
     endX, endY = point_to_cm(endCoordinates, mirror_x, flip_z, feet_per_cm, move_x, move_y)
-    start_point = adsk.core.Point3D.create(startX, startY, move_z)
-    end_point = adsk.core.Point3D.create(endX, endY, move_z)
-    line = sketch.sketchCurves.sketchLines.addByTwoPoints(start_point, end_point)
+    start = adsk.core.Point3D.create(startX, startY, move_z)
+    end = adsk.core.Point3D.create(endX, endY, move_z)
+    line = sketch.sketchCurves.sketchLines.addByTwoPoints(start, end)
     line.name = name
 
 def add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
@@ -195,41 +196,66 @@ def add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_
 def add_fusion_hour_label(sketch_text, hour, minute, location, bearing, hour_font_size, hour_font, lower_numbers_follow_clock, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
     if minute > 0:
         return
-
+    
     roman_numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
     text = roman_numerals[hour - 1]  # Adjusting for hours starting at 1
 
     x, y = point_to_cm(location, mirror_x, flip_z, feet_per_cm, move_x, move_y)
 
+
+    is_above_line = True
+
+    if 90 < bearing < 270:
+        is_above_line = False
+        
     if not lower_numbers_follow_clock and 90 < bearing < 270:
+        # is_above_line = False
+        log_message('rotate {}'.format(text))
         bearing += 180
 
     # Calculate the rotation in radians
     bearing_rad = math.radians(bearing)
 
     # Length of the line
-    line_length = hour_font_size  # Adjust this value if needed
+    line_length = 2*hour_font_size  # Adjust this value if needed
 
     # Calculate point1 and point2 based on the bearing
     point1_x = x + (line_length / 2) * math.cos(bearing_rad)
-    point1_y = y + (line_length / 2) * math.sin(bearing_rad)
+    point1_y = y - (line_length / 2) * math.sin(bearing_rad)
     point2_x = x - (line_length / 2) * math.cos(bearing_rad)
-    point2_y = y - (line_length / 2) * math.sin(bearing_rad)
+    point2_y = y + (line_length / 2) * math.sin(bearing_rad)
+
+    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x, y, move_z))
+
+    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + .1 * (line_length / 2) * math.cos(bearing_rad), y + .1 * (line_length / 2) * math.sin(bearing_rad), move_z))
+    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + .2 * (line_length / 2) * math.cos(bearing_rad), y - .2 * (line_length / 2) * math.sin(bearing_rad), move_z))
+    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - .3 * (line_length / 2) * math.cos(bearing_rad), y + .3 * (line_length / 2) * math.sin(bearing_rad), move_z))
+    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - .4 * (line_length / 2) * math.cos(bearing_rad), y - .4 * (line_length / 2) * math.sin(bearing_rad), move_z))
+
+    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + 1.1 * (line_length / 2) * math.sin(bearing_rad), y + 1.1 * (line_length / 2) * math.cos(bearing_rad), move_z))
+    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + 1.2 * (line_length / 2) * math.sin(bearing_rad), y - 1.2 * (line_length / 2) * math.cos(bearing_rad), move_z))
+    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - 1.3 * (line_length / 2) * math.sin(bearing_rad), y + 1.3 * (line_length / 2) * math.cos(bearing_rad), move_z))
+    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - 1.4 * (line_length / 2) * math.sin(bearing_rad), y - 1.4 * (line_length / 2) * math.cos(bearing_rad), move_z))
+
 
     point1 = adsk.core.Point3D.create(point1_x, point1_y, move_z)
     point2 = adsk.core.Point3D.create(point2_x, point2_y, move_z)
 
     # Create the text input for Fusion 360
-    text_input = sketch_text.sketchTexts.createInput2(text, hour_font_size)
-    text_input.setAsMultiLine(point1,
-                              point2,
-                              adsk.core.HorizontalAlignments.CenterHorizontalAlignment,
-                              adsk.core.VerticalAlignments.MiddleVerticalAlignment, 0)
-    
-    text_input.fontName = hour_font
 
-    # Add the text to the sketch
-    sketch_text.sketchTexts.add(text_input)
+    # Draw an path to use to create text along a curve.
+    path = sketch_text.sketchCurves.sketchLines.addByTwoPoints(point1, point2)
+    path.isConstruction = True
+
+    # Create text along the arc.
+    input = sketch_text.sketchTexts.createInput2(text, hour_font_size)
+    input.setAsAlongPath(path, is_above_line, adsk.core.HorizontalAlignments.CenterHorizontalAlignment, 0)
+    input.isHorizontalFlip = False
+    input.isVerticalFlip = False
+    input.fontName = hour_font
+    sketch_text.sketchTexts.add(input)        
+    
+
 
 def render_map(sketch, sketch_text, flip_z, mirror_x, city_diameter_cm, move_x, move_y, move_z, 
                hour_font_size, hour_font, lower_numbers_follow_clock, extend_radial_names_by_blocks):
