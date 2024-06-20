@@ -385,7 +385,7 @@ def renderTrashFence(addLine):
         lastPoint = point
 
     
-def renderMap(addArch, addLine, addCircle, addMan, addTemple, addHourLabel = None, extendRadialNamesByBlocks = 0):
+def renderMap(addArch, addLine, addFenceLine, addCircle, addMan, addTemple, addHourLabel = None, extendRadialNamesByBlocks = 0):
     """ Missing elements:
     Portals
     Airport
@@ -397,7 +397,7 @@ def renderMap(addArch, addLine, addCircle, addMan, addTemple, addHourLabel = Non
     generateCenterCamp(addLine, addArch, addCircle)
     renderPromenades(addLine)
     renderManAndTemple(addMan,addTemple) 
-    renderTrashFence(addLine)
+    renderTrashFence(addFenceLine)
     if not addHourLabel is None:
         generateRadialStreetNames(addHourLabel, extendRadialNamesByBlocks * depthAtoIInFeet)
    

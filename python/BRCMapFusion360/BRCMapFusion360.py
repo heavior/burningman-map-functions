@@ -271,13 +271,18 @@ def add_fusion_hour_label(sketch_text, hour, minute, location, bearing, hour_fon
     
 
 
-def render_map(sketch, sketch_text, flip_z, mirror_x, city_diameter_cm, move_x, move_y, move_z, 
+def render_map(sketch, sketch_text, sketch_fence, flip_z, mirror_x, city_diameter_cm, move_x, move_y, move_z, 
                hour_font_size, hour_font, lower_numbers_follow_clock, extend_radial_names_by_blocks):
+    if sketch_fence == None:
+        sketch_fence = sketch
+    if sketch_text == None:
+        sketch_text = sketch
     feet_per_cm = diameterKInFeet / city_diameter_cm
     log_message("Starting the render_map function")
     renderMap(
         lambda startAngle, endAngle, archRadius, center, name: add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
         lambda startCoordinates, endCoordinates, name: add_fusion_line(sketch, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
+        lambda startCoordinates, endCoordinates, name: add_fusion_line(sketch_fence, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
         lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
         lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addMan
         lambda location, width, name: add_heart(sketch, location, width / 2, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addTemple
@@ -297,8 +302,7 @@ def run(context):
         
         origin = adsk.core.Point3D.create(0, 0, 0)
         sketch = find_or_create_sketch(design, SKETCH_NAME, origin)
-        sketch_text = sketch
-        render_map(sketch, sketch_text, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, MOVE_X, MOVE_Y, MOVE_Z, 
+        render_map(sketch, None, None, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, MOVE_X, MOVE_Y, MOVE_Z, 
                    HOUR_FONT_SIZE, HOUR_FONT, 
                    LOWER_NUMBERS_FOLLOW_CLOCK, EXTEND_RADIAL_NAMES_BY_BLOCKS)
     except:

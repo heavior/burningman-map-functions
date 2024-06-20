@@ -187,7 +187,7 @@ def addHourLabel(hour, minute, location, bearing):
 
 
 
-renderMap(addSVGArch, addSVGLine, addSVGCircle, addMan, addTemple, addHourLabel, 1.5)
+renderMap(addSVGArch, addSVGLine, addSVGLine, addSVGCircle, addMan, addTemple, addHourLabel, 1.5)
 
 # Generate the SVG content
 svg_group_elements = []

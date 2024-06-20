@@ -120,7 +120,7 @@ def addTemple(location, width, name):
         addKmlCircle(location, width, name)
 
 # Render the map elements
-renderMap(addKmlArch, addKmlLine, addKmlCircle, addMan, addTemple)
+renderMap(addKmlArch, addKmlLine, addKmlLine, addKmlCircle, addMan, addTemple)
 
 # Save the KML file
 kml_file_name = f"../renders/burning_man_map_{YEAR}.kml"
