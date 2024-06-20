@@ -196,14 +196,22 @@ def add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_
 def add_fusion_hour_label(sketch_text, hour, minute, location, bearing, hour_font_size, hour_font, lower_numbers_follow_clock, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
     if minute > 0:
         return
-    
+
+    if flip_z or mirror_x:
+        log_message('flip_z and mirror_x not supported correctly for hour labels!')
+        return
+
     roman_numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
     text = roman_numerals[hour - 1]  # Adjusting for hours starting at 1
 
     x, y = point_to_cm(location, mirror_x, flip_z, feet_per_cm, move_x, move_y)
 
-
     is_above_line = True
+
+    if flip_z:
+        bearing += 180
+        if bearing > 360:
+            bearing -= 360
 
     if 90 < bearing < 270:
         is_above_line = False
@@ -220,22 +228,28 @@ def add_fusion_hour_label(sketch_text, hour, minute, location, bearing, hour_fon
     line_length = hour_font_size  # Adjust this value if needed
 
     # Calculate point1 and point2 based on the bearing
-    point1_x = x + (line_length / 2) * math.cos(bearing_rad)
-    point1_y = y - (line_length / 2) * math.sin(bearing_rad)
-    point2_x = x - (line_length / 2) * math.cos(bearing_rad)
-    point2_y = y + (line_length / 2) * math.sin(bearing_rad)
+    if not flip_z:
+        point1_x = x + (line_length / 2) * math.cos(bearing_rad)
+        point1_y = y - (line_length / 2) * math.sin(bearing_rad)
+        point2_x = x - (line_length / 2) * math.cos(bearing_rad)
+        point2_y = y + (line_length / 2) * math.sin(bearing_rad)
+    else:
+        point2_x = x - (line_length / 2) * math.cos(bearing_rad)
+        point2_y = y - (line_length / 2) * math.sin(bearing_rad)
+        point1_x = x + (line_length / 2) * math.cos(bearing_rad)
+        point1_y = y + (line_length / 2) * math.sin(bearing_rad)
 
-    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x, y, move_z))
+    sketch_text.sketchPoints.add(adsk.core.Point3D.create(x, y, move_z))
 
-    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + .1 * (line_length / 2) * math.cos(bearing_rad), y + .1 * (line_length / 2) * math.sin(bearing_rad), move_z))
-    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + .2 * (line_length / 2) * math.cos(bearing_rad), y - .2 * (line_length / 2) * math.sin(bearing_rad), move_z))
-    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - .3 * (line_length / 2) * math.cos(bearing_rad), y + .3 * (line_length / 2) * math.sin(bearing_rad), move_z))
-    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - .4 * (line_length / 2) * math.cos(bearing_rad), y - .4 * (line_length / 2) * math.sin(bearing_rad), move_z))
+    sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + .1 * (line_length / 2) * math.cos(bearing_rad), y + .1 * (line_length / 2) * math.sin(bearing_rad), move_z))
+    sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + .2 * (line_length / 2) * math.cos(bearing_rad), y - .2 * (line_length / 2) * math.sin(bearing_rad), move_z))
+    sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - .3 * (line_length / 2) * math.cos(bearing_rad), y + .3 * (line_length / 2) * math.sin(bearing_rad), move_z))
+    sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - .4 * (line_length / 2) * math.cos(bearing_rad), y - .4 * (line_length / 2) * math.sin(bearing_rad), move_z))
 
-    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + 1.1 * (line_length / 2) * math.sin(bearing_rad), y + 1.1 * (line_length / 2) * math.cos(bearing_rad), move_z))
-    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + 1.2 * (line_length / 2) * math.sin(bearing_rad), y - 1.2 * (line_length / 2) * math.cos(bearing_rad), move_z))
-    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - 1.3 * (line_length / 2) * math.sin(bearing_rad), y + 1.3 * (line_length / 2) * math.cos(bearing_rad), move_z))
-    # sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - 1.4 * (line_length / 2) * math.sin(bearing_rad), y - 1.4 * (line_length / 2) * math.cos(bearing_rad), move_z))
+    sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + 1.1 * (line_length / 2) * math.sin(bearing_rad), y + 1.1 * (line_length / 2) * math.cos(bearing_rad), move_z))
+    sketch_text.sketchPoints.add(adsk.core.Point3D.create(x + 1.2 * (line_length / 2) * math.sin(bearing_rad), y - 1.2 * (line_length / 2) * math.cos(bearing_rad), move_z))
+    sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - 1.3 * (line_length / 2) * math.sin(bearing_rad), y + 1.3 * (line_length / 2) * math.cos(bearing_rad), move_z))
+    sketch_text.sketchPoints.add(adsk.core.Point3D.create(x - 1.4 * (line_length / 2) * math.sin(bearing_rad), y - 1.4 * (line_length / 2) * math.cos(bearing_rad), move_z))
 
 
     point1 = adsk.core.Point3D.create(point1_x, point1_y, move_z)
