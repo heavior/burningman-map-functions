@@ -35,7 +35,7 @@ def print_location_counts(location_counts, location_details, total_count):
     for coordinates, count in sorted_locations:
         if count > 1:
             details = location_details[coordinates]
-            print(f"Coord: {coordinates}, \tCount: {count}, \tLoc : {details['string']}")
+            # print(f"Coord: {coordinates}, \tCount: {count}, \tLoc : {details['string']}")
             if coordinates != (None, None):
                 non_unique_locations += count
             if coordinates != (None, None) and count > max_count:

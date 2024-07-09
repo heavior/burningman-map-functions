@@ -302,8 +302,25 @@ def locationObjectToCoordinate(location):
         
         if 'Portal' in location['frontage']:
             # special case - a portal, it has time
-            print(f"TODO: return portal location for {location}")
-            return None, None
+            location["frontage"] = location["frontage"].replace (' Portal','')
+            is_portal = True
+
+            hours, minutes = parseHoursMinutes(location["frontage"])
+            letter = "esplanade"
+
+            # find intersection
+            center = addressToCoordinate (letter, hours, minutes)
+
+            radius = portalMouthInFeet/2 # square diagonal 
+            # use "exact location" field to find angle position relative to the plaza center, 
+            man_bearing = bearing(hours, minutes)
+            center_bearing = exactLocationToBearing (location["exact_location"], man_bearing) 
+            # step by plaza radius in that direction
+
+            if center_bearing is None:
+                return center
+            # using exact location, step to the corner of the intersection or to the mid-block
+            return distanceBearingFromCenter(radius, center_bearing, center)
 
         raise ValueError (f"Non-plaza location with no intersection: {location}")
 
@@ -343,7 +360,7 @@ def locationObjectToCoordinate(location):
         else:
             raise ValueError (f"Unknown location with @-intersection: {location['string']}")
 
-        print("Check if need to step away or use inner radius")
+        # print("Check if need to step away or use inner radius")
         # centerCampRadiusInsideInFeet = 320  # canopy
         # centerCampRadiusOutsideInFeet = 763
 
@@ -410,11 +427,13 @@ def locationObjectToCoordinate(location):
         center = addressToCoordinate (letter, hours, minutes)
 
         radius = streetWidthInFeet/2 * math.sqrt(2) # square diagonal 
+        if is_portal:
+            print("TODO: find better width for the portal depending on the crossing street")
         # use "exact location" field to find angle position relative to the plaza center, 
         man_bearing = bearing(hours, minutes)
         center_bearing = exactLocationToBearing (location["exact_location"], man_bearing) 
         # step by plaza radius in that direction
-
+        
         if center_bearing is None:
             return center
         # using exact location, step to the corner of the intersection or to the mid-block
