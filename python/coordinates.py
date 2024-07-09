@@ -1,5 +1,6 @@
 from geopy.distance import distance as geopy_distance
-
+import re
+import math
 
 YEAR = 2024 # Important: Man moves, so you need to check the latest
 
@@ -182,6 +183,73 @@ def addressToCoordinate(letter, hours, minutes):
 def letterBearingToCoordinate(letter, bearing):
     return distanceBearingToCoordinate(letterToDistance(letter), bearing)
 
+def parseHoursMinutes(s):
+    if s is None:
+        raise ValueError(f"None value for parsing time")
+    
+     # Split the string by ':'
+    parts = s.split(':')
+    
+    # Check if the string was split into exactly two parts
+    if len(parts) != 2:
+        raise ValueError(f"String format is incorrect: {s}")
+    
+    try:
+        # Convert the parts to integers
+        num1 = int(parts[0])
+        num2 = int(parts[1])
+    except ValueError:
+        # Raise an exception if conversion to integers fails
+        raise ValueError(f"String contains non-numeric parts: {s}")
+    
+    return num1, num2
+
+
+def parsePlazaAddress(s):
+    # Define the regex pattern to match the expected format
+    pattern = r"(\d+):(\d+)\s+([A-Z])\s+Plaza"
+    
+    # Use regex to match the pattern
+    match = re.match(pattern, s)
+    
+    if not match:
+        raise ValueError(f"String format is incorrect: {s}")
+    
+    # Extract the matched groups
+    hours = int(match.group(1))
+    minutes = int(match.group(2))
+    letter = match.group(3)
+    
+    return hours, minutes, letter
+
+def exactLocationToBearing (exact_location, man_bearing):
+    bearing_correction = 180 - man_bearing
+    bearings = {
+        'Mid-block facing man': 0 + bearing_correction, 
+        'Mid-block facing mountain': 180 + bearing_correction,
+        'Mid-block facing 2:00': 90 + bearing_correction,
+        'Mid-block facing 10:00': 270 + bearing_correction,
+        'Corner - facing man & 2:00': 45 + bearing_correction,
+        'Corner - facing man & 10:00': -45 + bearing_correction,
+        'Corner - facing mountain & 2:00': 135 + bearing_correction,
+        'Corner - facing mountain & 10:00': -135 + bearing_correction,
+    }
+
+    if not exact_location in bearings and not exact_location is None:
+        raise ValueError (f"Unknown exact_location: {exact_location}")
+    if exact_location is None:
+        return None
+    
+    value = bearings [exact_location]
+    while(value < 0):
+        value += 360
+
+    while(value >= 360):
+        value -= 360
+    
+    return value
+
+
 def locationObjectToCoordinate(location):
     # this function takes location of the art or camp from the database, and returns a best guess about coordinates
 
@@ -194,101 +262,166 @@ def locationObjectToCoordinate(location):
                 not (location['distance'] is None or location['hour'] is None or location['minute'] is None):
         return distanceToCoordinate(location['distance'],location['hour'], location['minute']);
 
-    # "intersection_type": "@", is used for center camp
-    """
-    "location": {
-            "string": "Rod's Ring Road @ 8:15",
-            "frontage": "Rod's Ring Road",
-            "intersection": "8:15",
+    # ValueError: Cannot parse street location: {'string': '', 'frontage': None, 'intersection': None, 'intersection_type': '&', 'dimensions': 'x', 'exact_location': None}
+    if location["string"] == '':
+        return None, None
+
+
+    # Plaza locations have no interestion type:
+    if "intersection_type" not in location or location["intersection_type"] is None or location["intersection"] is None:
+        #  "intersection": null, "intersection_type": null,  - plazas and weird locations, need a vocabulary
+        if 'Plaza' in location["frontage"]:
+            """
+                "location": {
+                    "string": "3:00 G Plaza None None",
+                    "frontage": "3:00 G Plaza",
+                    "intersection": null,
+                    "intersection_type": null,
+                    "dimensions": "50+ x 250",
+                    "exact_location": null
+                },
+                6 to 13 camps at the same plaza frontage!
+                ignoring camp dimensions  since there is a lot of camps at the same point, it's not safe to point inside the camp
+            """
+            # parse Plaza address
+            hours, minutes, letter = parsePlazaAddress( location["frontage"])
+            # find center of the plaza
+            center = addressToCoordinate (letter, hours, minutes)
+            man_bearing = bearing(hours, minutes)
+            radius = (plazaOuterWidth if hours != 6 else plazaOuterWidth6)/2
+            # use "exact location" field to find angle position relative to the plaza center, 
+            center_bearing = exactLocationToBearing (location["exact_location"], man_bearing) 
+            # step by plaza radius in that direction
+            if center_bearing is None:
+                return center
+            return distanceBearingFromCenter(radius, center_bearing, center)
+        
+        if 'Airport Road' == location["frontage"]:
+            print(f"TODO: return Airport location for {location}")
+            return None, None
+        
+        if 'Portal' in location['frontage']:
+            # special case - a portal, it has time
+            print(f"TODO: return portal location for {location}")
+            return None, None
+
+        raise ValueError (f"Non-plaza location with no intersection: {location}")
+
+
+    # Center camp, "intersection_type": "@"
+    if location["intersection_type"] == '@':
+        """
+        "location": {
+                "string": "Rod's Ring Road @ 8:15",
+                "frontage": "Rod's Ring Road",
+                "intersection": "8:15",
+                "intersection_type": "@",
+                "dimensions": "60 x 50",
+                "exact_location": null
+            },
+        "location": {
+            "string": "Center Camp Plaza @ 8:00",
+            "frontage": "Center Camp Plaza",
+            "intersection": "8:00",
             "intersection_type": "@",
-            "dimensions": "60 x 50",
+            "dimensions": "50 x 135",
             "exact_location": null
         },
-    "location": {
-        "string": "Center Camp Plaza @ 8:00",
-        "frontage": "Center Camp Plaza",
-        "intersection": "8:00",
-        "intersection_type": "@",
-        "dimensions": "50 x 135",
-        "exact_location": null
-    },
+        """
+        # Only one camp is observed for reach direction, so ignoring exact_location here
+        
+        # Find center of the Center camp
+        center = distanceToCoordinate(manToCenterOfCenterCampInFeet, 6, 00)
+        hours, minutes = parseHoursMinutes(location["intersection"])
+        # translate "intersection" into bearing
+        center_bearing = bearing(hours, minutes)
 
+        if  'Center Camp Plaza' == location['frontage']:
+            radius = centerCampRadiusOutsideInFeet
+        elif "Rod's Ring Road" == location['frontage']:
+            radius = centerCampRadiusInsideInFeet
+        else:
+            raise ValueError (f"Unknown location with @-intersection: {location['string']}")
 
-    Find center of the Center camp, 
-    translate "intersection" into direction
-    step by center camp radius in that direction
+        print("Check if need to step away or use inner radius")
+        # centerCampRadiusInsideInFeet = 320  # canopy
+        # centerCampRadiusOutsideInFeet = 763
 
-    IGNORE EXACT_LOCATION here
+        # step by center camp radius in that direction
+        return distanceBearingFromCenter(radius, center_bearing, center)
 
-    Each time has only one camp
-    """
+    # City camps, "intersection_type": "&"
 
-
-    #  "intersection": null, "intersection_type": null,  - plazas and weird locations, need a vocabulary
-
-    """
-     "location": {
-            "string": "3:00 G Plaza None None",
-            "frontage": "3:00 G Plaza",
-            "intersection": null,
-            "intersection_type": null,
-            "dimensions": "50+ x 250",
+    if location["intersection_type"] == '&':
+        """
+        camps: 
+            "location": {
+            "string": "3:30 & D",
+            "frontage": "3:30",
+            "intersection": "D",
+            "intersection_type": "&",
+            "dimensions": "100 x 100",
             "exact_location": null
-        },
+            },
+        
+        it can have up to 43 camps at the same address (4:00 E)
 
-    6 to 13 camps at the same plaza frontage!
+        flips also exist, for example:
+        4:45 & F: 4, F & 4:45: 16
+        """
+        """
+        TODO:
+        
+        2) find intersection
+        3) using exact location, step to the corner of the intersection or to the mid-block
+        4) MAYBE USE frontage to make another step
+        """
 
-    TODO: parse "Plaza", 
-    parse Plaza address, 
-    find center of the plaza, 
-    use "exact location" field to find angle position relative to the plaza center, 
-    step by plaza radius in that direction
+        # 1) identify street and clock
+        frontage_letter = None
+        if not "frontage" in location or location["frontage"] is None :
+            raise ValueError (f"Cannot parse street location: {location}")
+        
+        
+        if  not "intersection" in location or location["intersection"] is None:
+            # 'frontage': '4:30 G Plaza',
+            pass
+        is_portal = False
+        try:
+            if ' Portal' in location["intersection"]:
+                location["intersection"] = location["intersection"].replace (' Portal','')
+                is_portal = True
 
-    ignore camp dimensions  since there is a lot of camps at the same point, it's not safe to point inside the camp
-    """
+            hours, minutes = parseHoursMinutes(location["intersection"])
+            letter = location["frontage"]
+            frontage_letter = True
+        except ValueError:
+            if ' Portal' in location["frontage"]:
+                location["frontage"] = location["frontage"].replace (' Portal','')
+                is_portal = True
+        
+            hours, minutes = parseHoursMinutes(location["frontage"])
+            letter = location["intersection"]
+            frontage_letter = False
+
+        # TODO: How to use frontage here?
+
+        # find intersection
+        center = addressToCoordinate (letter, hours, minutes)
+
+        radius = streetWidthInFeet/2 * math.sqrt(2) # square diagonal 
+        # use "exact location" field to find angle position relative to the plaza center, 
+        man_bearing = bearing(hours, minutes)
+        center_bearing = exactLocationToBearing (location["exact_location"], man_bearing) 
+        # step by plaza radius in that direction
+
+        if center_bearing is None:
+            return center
+        # using exact location, step to the corner of the intersection or to the mid-block
+        return distanceBearingFromCenter(radius, center_bearing, center)
 
 
-    # & - normal camps inside the city
-
-    """
-camps: 
-"location": {
-"string": "3:30 & D",
-"frontage": "3:30",
-"intersection": "D",
-"intersection_type": "&",
-"dimensions": "100 x 100",
-"exact_location": null
-},
-
-it can have up to 43 camps at the same address (4:00 E)
-
-flips also exist, for example:
-4:45 & F: 4, F & 4:45: 16
-
-TODO:
-1) identify street and clock
-2) find intersection
-3) using exact location, step to the corner of the intersection or to the mid-block
-4) MAYBE USE frontage to make another step
-
-"""
-
-
-"""
-Unique values for 'frontage': {'C', '9:00', '5:45', '8:15', 'D', '4:30 G Plaza', '9:00 B Plaza', '6:00', '7:30 B Plaza', '8:30', '7:45', '2:30', '6:30', 'K', '9:30', 'E', 'B', '4:30 B Plaza', '7:00', 'I', '4:45', '3:45', "Rod's Ring Road", '6:00 G Plaza', '3:00 Portal', '10:00', '6:00 Portal', '5:15', '7:15', '4:15', '3:00 G Plaza', '3:00', '3:15', '3:30', 'Center Camp Plaza', '6:15', '2:45', '9:45', 'Esplanade', '8:45', '7:30 Portal', '6:45', 'H', '7:30 G Plaza', 'Airport Road', '9:00 Portal', 'J', '8:00', '5:00', '7:30', '4:30 Portal', '9:00 G Plaza', 'F', '3:00 B Plaza', '2:15', 'A', None, '5:30', '4:30', '9:15', '4:00', 'G', '2:00'}
-Unique values for 'intersection': {'C', '9:00', '5:45', '8:15', 'D', '10:15', '7:45', '8:30', '2:30', '6:30', 'K', '9:30', 'E', 'B', '7:00', '1:45', 'I', '4:45', '3:45', '5:15', '3:00 Portal', '6:00 Portal', '10:00', '7:15', '10:30', '4:15', '3:15', '2:45', '3:30', '3:00', '6:15', '9:45', '8:45', '7:30 Portal', '6:45', 'H', 'J', '9:00 Portal', '8:00', '5:00', '7:30', '4:30 Portal', 'F', '2:15', 'A', '1:00', '11:30', None, '5:30', '4:30', '9:15', '4:00', 'G', '2:00'}
-Unique values for 'intersection_type': {'@', '&', None}
-Unique values for 'exact_location': {'Mid-block facing man', 'Corner - facing mountain & 2:00', 'Corner - facing man & 10:00', None}
-
-Mid-block facing man
-Mid-block facing mountain
-Mid-block facing 2:00
-Mid-block facing 10:00
-Corner - facing man & 2:00
-Corner - facing man & 10:00
-Corner - facing mountain & 2:00
-Corner - facing mountain & 10:00
-
-    """
+       
+    raise ValueError (f"Cannot parse location: {location}")
+  
     
