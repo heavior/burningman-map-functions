@@ -1,3 +1,6 @@
+# source: https://github.com/heavior/burningman-map-functions
+# don't forget to push changes there as well!
+
 from geopy.distance import distance as geopy_distance
 import re
 import math
@@ -370,7 +373,7 @@ def locationObjectToCoordinate(location):
         center_bearing = bearing(hours, minutes)
 
         if  'Center Camp Plaza' == location['frontage']:
-            radius = centerCampRadiusInFeet
+            radius = centerCampRadiusOutsideInFeet
         elif "Rod's Ring Road" == location['frontage']: # this is here for compatibility with 2023 map, but it's not maintained - so not checked for accuracy
             radius = centerCampRadiusOutsideInFeet
         else:
