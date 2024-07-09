@@ -105,9 +105,17 @@ Man to the center of Central Canopy = 2,999’
 """
 manToCenterOfCenterCampInFeet = 2999
 
-centerCampRadiusInsideInFeet = 320  # canopy
-centerCampRadiusOutsideInFeet = 763
-centerCampRadiusToRodsRingInFeet = 783
+centerCampRadiusInsideInFeet = 250 # eyeballing based on PDF map, NO OFFICIAL DATA YET
+
+# centerCampRadiusOutsideInFeet = 763
+# centerCampRadiusToRodsRingInFeet = 783
+
+centerCampRadiusOutsideInFeet = math.sqrt(
+    manToCenterOfCenterCampInFeet*manToCenterOfCenterCampInFeet + distanceToStreetCenter['a']*distanceToStreetCenter['a']
+    - 2*manToCenterOfCenterCampInFeet * distanceToStreetCenter['a']*math.cos(math.radians(MINUTE_DEGREE * 30)))
+
+centerCampRadiusToRodsRingInFeet = centerCampRadiusOutsideInFeet
+
 
 centerCampStreetCrossRadius = 1 # some default setting
 centerCampOuterRadius = centerCampRadiusToRodsRingInFeet # outer radius of center camp that look into playa
