@@ -115,7 +115,7 @@ def add_circle(sketch, location, radius, name, flip_z, mirror_x, feet_per_cm, mo
 
 def add_heart(sketch, center, size, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
     x, y = point_to_cm(center, mirror_x, flip_z, feet_per_cm, move_x, move_y)
-    size = size / feet_per_cm
+    size = 2*size / feet_per_cm
 
     if flip_z:
         y = -y
