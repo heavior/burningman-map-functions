@@ -4,7 +4,7 @@ import math
 
 YEAR = 2024 # Important: Man moves, so you need to check the latest
 
-GOLDEN_STAKE = (40.786400, -119.203500)
+GOLDEN_STAKE = (40.786969, -119.204101)
 ELEVATION = 3904
 
 manToTempleInFeet = 2500 # not in the measurements, number is taken from 2023 official printed BRC map
@@ -12,13 +12,13 @@ templeRadiusInFeet = 200 # not in the measurements, number is taken from 2023 of
 manRadiusInFeet = 400 # not in the measurements, number is taken from 2023 official printed BRC map
 
 fencePoints = [
-    (40.782814, -119.233566),
-    (40.807028, -119.217274),
-    (40.802722, -119.181931),
-    (40.775857, -119.176407),
-    (40.763558, -119.208301)
+    (40.783385, -119.233837),
+    (40.807359, -119.217774),
+    (40.803149, -119.182806),
+    (40.776576, -119.177278),
+    (40.764366, -119.208810)
 ]
-greetersGap = (40.773203, -119.220953)
+greetersGap = (40.773876, -119.221322) # not used anywhere in this script
 
 HOUR_DEGREE = 30
 MINUTE_DEGREE = .5
@@ -38,27 +38,31 @@ Later: center camp coordinates, art coordinates (time and distance), camp orient
 
 
 """
-The center of the first road “Esplanade” is 2,500’ from the Man. Esplanade to Afanc block is
-400’ deep, then blocks Afanc through Igopogo are 250’ deep. Blocks Igopogo through Kraken
-are 150’ deep. Mid-city double blocks between Encantado and Frogbat are 450’ deep.
-Measured to the road center, the outer road Kraken is 11,690’ in diameter.
+The center of the first road “Esplanade” is 2,500’ from the Man. Esplanade to Agog block is
+400’ deep, blocks Agog through Intrigue are 250’ deep. Blocks Intrigue through Kelter are
+150’ deep. Mid-city double blocks between Enchant and Fascinate are 450’ deep. Measured
+to the road center, the outer road Kelter is 11,490’ in diameter.
 """
 distanceToEsplanadeInFeet = 2500
 depthEsplanadeToAInFeet = 400  # Esplanade to A
 depthAtoIInFeet = 250  # standard streets
 depthItoKInFeet = 150  # outer streets
 depthEtoFInFeet = 450  # double block
-diameterKInFeet = 11690
-
+diameterKInFeet = 11490
 
 """
-All streets, radial and annular, are 40’ wide, except Kraken, which is 50’ wide.
-Pedestrian and bicycle Community Paths are between Frogbat and Kraken at
+The radial avenues 2:30, 3:00, 4:30, 5:30, 6:00, 6:30, 7:30, 9:00, and 9:30 are 40 feet wide.
+All annular streets are 30 feet wide except Esplanade, at 40 feet, and Kelter, at 50 feet.
+Pedestrian and bicycle Community Paths are between Facinate and Kelter at
 3:45, 4:15, 4:45, 5:15, 6:45, 7:15, 7:45, and 8:15 are 15 feet wide.
 """
-streetWidthInFeet = 40
-outerStreetWidthInFeet = 50
-quaterHourStreetWidthinFeet = 15
+radialAvenueWidthInFeet = 40 # The radial avenues 2:30, 3:00, 4:30, 5:30, 6:00, 6:30, 7:30, 9:00, and 9:30 are 40 feet wide.
+annularStreetWidthInFeet = 30 # All annular streets are 30 feet wide except
+esplanadeWidthInFeet = 40 # Esplanade, at 40 feet, and 
+
+# streetWidthInFeet = 40
+outerStreetWidthInFeet = 50  # Kelter, at 50 feet. 
+quaterHourStreetWidthinFeet = 15 # 3:45, 4:15, 4:45, 5:15, 6:45, 7:15, 7:45, and 8:15 are 15 feet wide.
 
 quaterHourStreetsStartAt = 'f'
 
@@ -82,22 +86,24 @@ lastStreet = 'k'
 distanceToStreetCenter = {}
 cumulative_distance = 0
 
-streetDepths['esplanade'] -= streetWidthInFeet
+streetDepths['esplanade'] -= annularStreetWidthInFeet - (esplanadeWidthInFeet - annularStreetWidthInFeet)/2
 for street, depth in streetDepths.items():
-    cumulative_distance += depth + streetWidthInFeet
+    cumulative_distance += depth + annularStreetWidthInFeet
     distanceToStreetCenter[street] = cumulative_distance
-streetDepths['esplanade'] += streetWidthInFeet
+streetDepths['esplanade'] += annularStreetWidthInFeet
+distanceToStreetCenter['esplanade'] -= (esplanadeWidthInFeet - annularStreetWidthInFeet)/2
 
-distanceToStreetCenter['k'] += (outerStreetWidthInFeet - streetWidthInFeet) / 2
+distanceToStreetCenter['k'] += (outerStreetWidthInFeet-annularStreetWidthInFeet)/2
 
-assert distanceToStreetCenter['k'] * 2 == diameterKInFeet, "Street width calculations do not match defined K street diameter"
+assert distanceToStreetCenter['k'] * 2 == diameterKInFeet, f"Street width calculations do not match defined K street diameter {distanceToStreetCenter['k'] * 2} vs {diameterKInFeet}"
 
 """
-Man to the center of Center Camp = 3,026’
-Center Camp theme camp area radius: 320’ to inside and 763’ to outside
-(783’ radius to the center of the Rod’s Ring Road)
+Man to the center of Central Canopy = 2,999’
+
+????? Center Camp theme camp area radius: 320’ to inside and 763’ to outside
+????? (783’ radius to the center of the Rod’s Ring Road)
 """
-manToCenterOfCenterCampInFeet = 3026
+manToCenterOfCenterCampInFeet = 2999
 
 centerCampRadiusInsideInFeet = 320  # canopy
 centerCampRadiusOutsideInFeet = 763
@@ -118,9 +124,9 @@ if YEAR == 2024:
 
 """
 There are five plaza portals to the Esplanade: at 6:00 (Center Camp), 3:00, 4:30, 7:30, and
-9:00. The Esplanade mouth of the portal at Center Camp is 317’
+9:00. The Esplanade mouth of the portal at Center Camp is 210’
 """
-portalMouthInFeet = 317
+portalMouthInFeet = 210 # not used, I think
 
 def bearing(hours, minutes):
     result =  midnightBearing + hours * HOUR_DEGREE + minutes * MINUTE_DEGREE
@@ -136,15 +142,17 @@ def letterToDistance(letter):
 
 
 """
-Plazas are at 3:00, 4:30, 7:30 and 9:00 and Bigfoot, centered 3230’ from the Man. A ring
-of mid-city plazas at 3:00, 4:30, 6:00, 7:30, and 9:00 are at Grootslang, centered 4,880’
+Plazas are at 3:00, 4:30, 7:30 and 9:00 and Baffle, centered 3215’ from the Man. A ring
+of mid-city plazas at 3:00, 4:30, 6:00, 7:30, and 9:00 are at Gobsmack, centered 4,815’
 from the Man.
+
 """
-plazaToManInFeet = 4880
-plazaWidth = 5 * streetWidthInFeet # magical number
+innerPlazaToManInFeet = 3215 # Not used, using center of intersection to render plazas
+outerPlazaToManInFeet = 4815 # Not used, using center of intersection to render plazas
+plazaWidth = 5 * radialAvenueWidthInFeet # magical number
 
 plazaOuterWidth = 0 # defines circles around plazas on the map
-plazaOuterWidth6 = 2*(depthAtoIInFeet + streetWidthInFeet) # plaza behind center camp
+plazaOuterWidth6 = 2*(depthAtoIInFeet + annularStreetWidthInFeet) # plaza behind center camp - magical number
 
 if YEAR == 2023: # in 2023, circles were around each plaza
     plazaOuterWidth = plazaOuterWidth6
@@ -354,15 +362,11 @@ def locationObjectToCoordinate(location):
         center_bearing = bearing(hours, minutes)
 
         if  'Center Camp Plaza' == location['frontage']:
+            radius = centerCampRadiusInFeet
+        elif "Rod's Ring Road" == location['frontage']: # this is here for compatibility with 2023 map, but it's not maintained - so not checked for accuracy
             radius = centerCampRadiusOutsideInFeet
-        elif "Rod's Ring Road" == location['frontage']:
-            radius = centerCampRadiusInsideInFeet
         else:
             raise ValueError (f"Unknown location with @-intersection: {location['string']}")
-
-        # print("Check if need to step away or use inner radius")
-        # centerCampRadiusInsideInFeet = 320  # canopy
-        # centerCampRadiusOutsideInFeet = 763
 
         # step by center camp radius in that direction
         return distanceBearingFromCenter(radius, center_bearing, center)
@@ -426,7 +430,7 @@ def locationObjectToCoordinate(location):
         # find intersection
         center = addressToCoordinate (letter, hours, minutes)
 
-        radius = streetWidthInFeet/2 * math.sqrt(2) # square diagonal 
+        radius = math.sqrt(annularStreetWidthInFeet*2 + radialAvenueWidthInFeet*2)/2 # fiagonal
         if is_portal:
             print("TODO: find better width for the portal depending on the crossing street")
         # use "exact location" field to find angle position relative to the plaza center, 
