@@ -161,6 +161,12 @@ def addTemple(location, width, name):
     else:
         addSVGCircle(location, width, name)
 
+def addAirport(location, width, name):
+    x, y = convertGeoToXY(location)
+    if os.path.isfile('airport.svg'):
+        addSVGIcon('airport.svg', x, y, width / SVG_FEET_PER_PIXEL, name, rotation=0)
+    else:
+        addSVGCircle(location, width, name)
 
 def addHourLabel(hour, minute, location, bearing):
     if minute > 0:
@@ -187,7 +193,7 @@ def addHourLabel(hour, minute, location, bearing):
 
 
 
-renderMap(addSVGArch, addSVGLine, addSVGLine, addSVGCircle, addMan, addTemple, addHourLabel, 1.5)
+renderMap(addSVGArch, addSVGLine, addSVGLine, addSVGCircle, addMan, addTemple, addHourLabel, addAirport, 1.5)
 
 # Generate the SVG content
 svg_group_elements = []

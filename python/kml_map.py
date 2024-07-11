@@ -119,8 +119,17 @@ def addTemple(location, width, name):
     else:
         addKmlCircle(location, width, name)
 
+
+# Function to add the Temple icon or circle
+def addAirport(location, width, name):
+    location_list = point_to_list(location)
+    if os.path.isfile('airport.svg'):
+        addKmlIcon('airport.svg', location_list[0], location_list[1], width, name)
+    else:
+        addKmlCircle(location, width, name)
+
 # Render the map elements
-renderMap(addKmlArch, addKmlLine, addKmlLine, addKmlCircle, addMan, addTemple)
+renderMap(addKmlArch, addKmlLine, addKmlLine, addKmlCircle, addMan, addTemple, addAirport=addAirport)
 
 # Save the KML file
 kml_file_name = f"../renders/burning_man_map_{YEAR}.kml"

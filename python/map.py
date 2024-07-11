@@ -202,6 +202,9 @@ def renderManAndTemple(renderMan, renderTemple):
     renderMan(GOLDEN_STAKE, manRadiusInFeet*2, "Man")
     renderTemple(distanceToCoordinate(manToTempleInFeet, 12, 00), templeRadiusInFeet*2, "Temple")
 
+def renderAirport(addAirport):
+    addAirport(AIRPORT_COORDINATES, airportWidth, "airport") 
+
 def renderTrashFence(addLine):
     lastPoint = fencePoints[-1]
     for point in fencePoints:
@@ -209,7 +212,7 @@ def renderTrashFence(addLine):
         lastPoint = point
 
     
-def renderMap(addArch, addLine, addFenceLine, addCircle, addMan, addTemple, addHourLabel = None, extendRadialNamesByBlocks = 0):
+def renderMap(addArch, addLine, addFenceLine, addCircle, addMan, addTemple, addHourLabel = None, addAirport = 0, extendRadialNamesByBlocks = 0):
     """ Missing elements:
     Portals
     Airport
@@ -221,6 +224,8 @@ def renderMap(addArch, addLine, addFenceLine, addCircle, addMan, addTemple, addH
     generateCenterCamp(addLine, addArch, addCircle)
     renderPromenades(addLine)
     renderManAndTemple(addMan,addTemple) 
+    if not addAirport is None:
+        renderAirport(addAirport)
     renderTrashFence(addFenceLine)
     if not addHourLabel is None:
         generateRadialStreetNames(addHourLabel, extendRadialNamesByBlocks * depthAtoIInFeet)

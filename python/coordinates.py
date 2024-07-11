@@ -13,6 +13,7 @@ ELEVATION = 3904
 manToTempleInFeet = 2500 # not in the measurements, number is taken from 2023 official printed BRC map
 templeRadiusInFeet = 200 # not in the measurements, number is taken from 2023 official printed BRC map
 manRadiusInFeet = 400 # not in the measurements, number is taken from 2023 official printed BRC map
+airportWidth = 2* templeRadiusInFeet # just to give is some dimensions on the map
 
 fencePoints = [
     (40.783385, -119.233837),
@@ -22,6 +23,8 @@ fencePoints = [
     (40.764366, -119.208810)
 ]
 greetersGap = (40.773876, -119.221322) # not used anywhere in this script
+
+AIRPORT_COORDINATES = (40.76707, -119.20906)
 
 HOUR_DEGREE = 30
 MINUTE_DEGREE = .5
@@ -316,8 +319,7 @@ def locationObjectToCoordinate(location):
             return distanceBearingFromCenter(radius, center_bearing, center)
         
         if 'Airport Road' == location["frontage"]:
-            print(f"TODO: return Airport location for {location}")
-            return None, None
+            return AIRPORT_COORDINATES
         
         if 'Portal' in location['frontage']:
             # special case - a portal, it has time

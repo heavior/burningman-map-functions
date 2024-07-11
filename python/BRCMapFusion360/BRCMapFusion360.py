@@ -288,6 +288,7 @@ def render_map(sketch, sketch_text, sketch_fence, flip_z, mirror_x, city_diamete
         lambda location, width, name: add_heart(sketch, location, width / 2, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addTemple
         lambda hour, minute, location, bearing: add_fusion_hour_label(
             sketch_text, hour, minute, location, bearing, hour_font_size, hour_font, lower_numbers_follow_clock, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
+        lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addAirport 
         extend_radial_names_by_blocks
     )
     log_message("Finished rendering the map")
