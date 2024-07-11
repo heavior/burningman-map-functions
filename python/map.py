@@ -212,7 +212,7 @@ def renderTrashFence(addLine):
         lastPoint = point
 
     
-def renderMap(addArch, addLine, addFenceLine, addCircle, addMan, addTemple, addHourLabel = None, addAirport = 0, extendRadialNamesByBlocks = 0):
+def renderMap(addArch, addLine, addFenceLine, addCircle, addMan, addTemple, addHourLabel = None, addAirport = None, extendRadialNamesByBlocks = 0):
     """ Missing elements:
     Portals
     Airport
