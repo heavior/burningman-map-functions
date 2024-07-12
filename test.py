@@ -58,3 +58,26 @@ if __name__ == "__main__":
     location_counts, location_details, total_count = count_camp_locations(camp_file_path)
     
     print_location_counts(location_counts, location_details, total_count)
+
+
+
+def count_items(file_path):
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    return len(data)
+
+def main():
+    event_file_path = 'event.json'
+    art_file_path = 'art.json'
+    camp_file_path = 'camp.json'
+    
+    event_count = count_items(event_file_path)
+    art_count = count_items(art_file_path)
+    camp_count = count_items(camp_file_path)
+    
+    print(f"Total number of events: {event_count}")
+    print(f"Total number of art: {art_count}")
+    print(f"Total number of camps: {camp_count}")
+
+if __name__ == "__main__":
+    main()

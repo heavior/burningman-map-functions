@@ -3,3 +3,5 @@ python/__pycache__/*
 /python/BRCMapFusion360/dependencies
 /python/BRCMapFusion360/.vscode
 python/BRCMapFusion360/plugin_log.txt
+renders/.DS_Store
+.DS_Store

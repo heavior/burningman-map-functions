@@ -273,9 +273,9 @@ def add_fusion_hour_label(sketch_text, hour, minute, location, bearing, hour_fon
 
 def render_map(sketch, sketch_text, sketch_fence, flip_z, mirror_x, city_diameter_cm, move_x, move_y, move_z, 
                hour_font_size, hour_font, lower_numbers_follow_clock, extend_radial_names_by_blocks):
-    if sketch_fence == None:
+    if sketch_fence is None:
         sketch_fence = sketch
-    if sketch_text == None:
+    if sketch_text is None:
         sketch_text = sketch
     feet_per_cm = diameterKInFeet / city_diameter_cm
     log_message("Starting the render_map function")
@@ -288,7 +288,7 @@ def render_map(sketch, sketch_text, sketch_fence, flip_z, mirror_x, city_diamete
         lambda location, width, name: add_heart(sketch, location, width / 2, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addTemple
         lambda hour, minute, location, bearing: add_fusion_hour_label(
             sketch_text, hour, minute, location, bearing, hour_font_size, hour_font, lower_numbers_follow_clock, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
-        lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addAirport 
+        None, #lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addAirport 
         extend_radial_names_by_blocks
     )
     log_message("Finished rendering the map")

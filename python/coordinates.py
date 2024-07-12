@@ -111,7 +111,7 @@ Man to the center of Central Canopy = 2,999’
 """
 manToCenterOfCenterCampInFeet = 2999
 
-centerCampRadiusInsideInFeet = 250 # eyeballing based on PDF map, NO OFFICIAL DATA YET
+centerCampRadiusInsideInFeet = 260 # based on detailed scheme provided in https://groups.google.com/a/burningman.org/g/bman-innovators-list/c/oOi7SH8iMcs 
 
 # centerCampRadiusOutsideInFeet = 763
 # centerCampRadiusToRodsRingInFeet = 783
