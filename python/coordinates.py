@@ -7,7 +7,7 @@ import math
 
 YEAR = 2024 # Important: Man moves, so you need to check the latest
 
-GOLDEN_STAKE = (40.786969, -119.204101)
+GOLDEN_STAKE = (40.782102949100000,	-119.197715586000000)
 ELEVATION = 3904
 
 manToTempleInFeet = 2500 # not in the measurements, number is taken from 2023 official printed BRC map
@@ -16,12 +16,18 @@ manRadiusInFeet = 400 # not in the measurements, number is taken from 2023 offic
 airportWidth = 2* templeRadiusInFeet # just to give is some dimensions on the map
 
 fencePoints = [
-    (40.783385, -119.233837),
-    (40.807359, -119.217774),
-    (40.803149, -119.182806),
-    (40.776576, -119.177278),
-    (40.764366, -119.208810)
+    (40.783372532200000,	-119.233843394000000),
+    (40.807327687900000,	-119.217760873000000),
+    (40.803145479100000,	-119.182761856000000),
+    (40.776548721200000,	-119.177275781000000),
+    (40.764356156400000,	-119.208797462000000)
 ]
+"""
+TODO: validate points
+300 & Esp	40.782102949100000	-119.197715586000000
+430 & Esp	40.780073196300000	-119.204088518000000
+900 & Esp	40.791838601800000	-119.210499936000000
+"""
 greetersGap = (40.773876, -119.221322) # not used anywhere in this script
 
 AIRPORT_COORDINATES = (40.76707, -119.20906)
