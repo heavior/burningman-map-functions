@@ -203,6 +203,7 @@ def renderManAndTemple(renderMan, renderTemple):
     renderTemple(distanceToCoordinate(manToTempleInFeet, 12, 00), templeRadiusInFeet*2, "Temple")
 
 def renderAirport(addAirport):
+    airportWidth = templeRadiusInFeet * 2 
     addAirport(AIRPORT_COORDINATES, airportWidth, "airport") 
 
 def renderTrashFence(addLine):
