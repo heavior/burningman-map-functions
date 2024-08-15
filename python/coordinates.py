@@ -7,8 +7,7 @@ import math
 
 YEAR = 2024 # Important: Man moves, so you need to check the latest
 
-GOLDEN_STAKE = (40.786969, -119.204101)
-# 40.786969, -119.204101
+GOLDEN_STAKE = (40.78695, -119.20409)
 ELEVATION = 3904
 
 manToTempleInFeet = 2500 # not in the measurements, number is taken from 2023 official printed BRC map
@@ -229,6 +228,10 @@ def parseHoursMinutes(s):
 
 def parsePlazaAddress(s):
     # Define the regex pattern to match the expected format
+
+    if 'Center Camp Plaza' in s:
+        return 6, 0, 'A'
+
     pattern = r"(\d+):(\d+)\s+([A-Z])\s+Plaza"
     
     # Use regex to match the pattern
@@ -245,16 +248,18 @@ def parsePlazaAddress(s):
     return hours, minutes, letter
 
 def exactLocationToBearing (exact_location, man_bearing):
-    bearing_correction = 180 - man_bearing
+    face_man = man_bearing + 180
     bearings = {
-        'Mid-block facing man': 0 + bearing_correction, 
-        'Mid-block facing mountain': 180 + bearing_correction,
-        'Mid-block facing 2:00': 90 + bearing_correction,
-        'Mid-block facing 10:00': 270 + bearing_correction,
-        'Corner - facing man & 2:00': 45 + bearing_correction,
-        'Corner - facing man & 10:00': -45 + bearing_correction,
-        'Corner - facing mountain & 2:00': 135 + bearing_correction,
-        'Corner - facing mountain & 10:00': -135 + bearing_correction,
+        'Mid-block facing man': 0,  # further from center - so moving to 180
+        'Mid-block facing mountain': 180, # closer to center - so moving to 0
+
+        'Mid-block facing 2:00': 90,
+        'Mid-block facing 10:00': -90,
+
+        'Corner - facing man & 2:00': 45,
+        'Corner - facing man & 10:00': -45,
+        'Corner - facing mountain & 2:00': 180 - 45,
+        'Corner - facing mountain & 10:00': 180 + 45,
     }
 
     if not exact_location in bearings and not exact_location is None:
@@ -262,7 +267,8 @@ def exactLocationToBearing (exact_location, man_bearing):
     if exact_location is None:
         return None
     
-    value = bearings [exact_location]
+    value = face_man + bearings [exact_location] + 180 
+
     while(value < 0):
         value += 360
 
@@ -271,9 +277,25 @@ def exactLocationToBearing (exact_location, man_bearing):
     
     return value
 
+def calculateExactLocation(hours, minutes, letter, radius, exact_location):
+    # find center of the plaza
+    center = addressToCoordinate (letter, hours, minutes)
+    man_bearing = bearing(hours, minutes)
+
+    center_bearing = exactLocationToBearing (exact_location, man_bearing) 
+    # step by plaza radius in that direction
+    if center_bearing is None:
+        print(f"no center bearing calculateExactLocation({hours}, {minutes}, {letter}, {radius}, {exact_location})")
+        return center
+    result =  distanceBearingFromCenter(radius, center_bearing, center)
+    print(f"calculateExactLocation({hours}, {minutes}, {letter}, {radius}, {exact_location}) -> {center_bearing} -> {result}")
+    return result
+
+
 
 def locationObjectToCoordinate(location):
     # this function takes location of the art or camp from the database, and returns a best guess about coordinates
+
 
     # simplest case, likey art:
     if 'gps_latitude' in location and 'gps_longitude' in location:
@@ -288,9 +310,11 @@ def locationObjectToCoordinate(location):
     if location["string"] == '':
         return None, None
 
-
     # Plaza locations have no interestion type:
-    if "intersection_type" not in location or location["intersection_type"] is None or location["intersection"] is None:
+    if "intersection_type" not in location or \
+            location["intersection_type"] is None or \
+            location["intersection"] is None or \
+                (location["intersection_type"] == '@' and 'Plaza' in location["frontage"] and not 'Center Camp' in location["frontage"]):
         #  "intersection": null, "intersection_type": null,  - plazas and weird locations, need a vocabulary
         if 'Plaza' in location["frontage"]:
             """
@@ -307,16 +331,10 @@ def locationObjectToCoordinate(location):
             """
             # parse Plaza address
             hours, minutes, letter = parsePlazaAddress( location["frontage"])
-            # find center of the plaza
-            center = addressToCoordinate (letter, hours, minutes)
-            man_bearing = bearing(hours, minutes)
             radius = (plazaOuterWidth if hours != 6 else plazaOuterWidth6)/2
             # use "exact location" field to find angle position relative to the plaza center, 
-            center_bearing = exactLocationToBearing (location["exact_location"], man_bearing) 
-            # step by plaza radius in that direction
-            if center_bearing is None:
-                return center
-            return distanceBearingFromCenter(radius, center_bearing, center)
+
+            return calculateExactLocation(hours, minutes, letter, radius, location["exact_location"])
         
         if 'Airport Road' == location["frontage"]:
             return AIRPORT_COORDINATES
@@ -328,23 +346,13 @@ def locationObjectToCoordinate(location):
 
             hours, minutes = parseHoursMinutes(location["frontage"])
             letter = "esplanade"
-
-            # find intersection
-            center = addressToCoordinate (letter, hours, minutes)
-
             radius = portalMouthInFeet/2 # square diagonal 
-            # use "exact location" field to find angle position relative to the plaza center, 
-            man_bearing = bearing(hours, minutes)
-            center_bearing = exactLocationToBearing (location["exact_location"], man_bearing) 
-            # step by plaza radius in that direction
 
-            if center_bearing is None:
-                return center
-            # using exact location, step to the corner of the intersection or to the mid-block
-            return distanceBearingFromCenter(radius, center_bearing, center)
+            return calculateExactLocation(hours, minutes, letter, radius, location["exact_location"])
 
         raise ValueError (f"Non-plaza location with no intersection: {location}")
 
+    # {'frontage': '5:30', 'intersection_type': '@', 'intersection': 'B', 'dimensions': '50 x 100', 'exact_location': 'Corner - facing mountain & 2:00', 'string': '5:30 @ B'}
 
     # Center camp, "intersection_type": "@"
     if location["intersection_type"] == '@':
@@ -365,6 +373,14 @@ def locationObjectToCoordinate(location):
             "dimensions": "50 x 135",
             "exact_location": null
         },
+
+        'location': {'frontage': '9:00 G Plaza', 
+            'intersection_type': '@', 
+            'intersection': '5:30', 
+            'dimensions': '80+ x 150', 
+            'exact_location': 'Corner - facing man & 10:00',
+            'string': '9:00 G Plaza @ 5:30'},
+
         """
         # Only one camp is observed for reach direction, so ignoring exact_location here
         
@@ -375,7 +391,7 @@ def locationObjectToCoordinate(location):
         center_bearing = bearing(hours, minutes)
 
         if  'Center Camp Plaza' == location['frontage']:
-            radius = centerCampRadiusOutsideInFeet
+            radius = centerCampRadiusInsideInFeet
         elif "Rod's Ring Road" == location['frontage']: # this is here for compatibility with 2023 map, but it's not maintained - so not checked for accuracy
             radius = centerCampRadiusOutsideInFeet
         else:
@@ -439,22 +455,13 @@ def locationObjectToCoordinate(location):
             frontage_letter = False
 
         # TODO: How to use frontage here?
+        # TODO: maybe use better calculation for street sizes - different streets = different points
+        radius = math.sqrt(annularStreetWidthInFeet**2 + radialAvenueWidthInFeet**2)/2 # fiagonal
 
-        # find intersection
-        center = addressToCoordinate (letter, hours, minutes)
+        # if is_portal:
+        #     print(f"TODO: find better width for the portal depending on the crossing street {location}")
 
-        radius = math.sqrt(annularStreetWidthInFeet*2 + radialAvenueWidthInFeet*2)/2 # fiagonal
-        if is_portal:
-            print("TODO: find better width for the portal depending on the crossing street")
-        # use "exact location" field to find angle position relative to the plaza center, 
-        man_bearing = bearing(hours, minutes)
-        center_bearing = exactLocationToBearing (location["exact_location"], man_bearing) 
-        # step by plaza radius in that direction
-        
-        if center_bearing is None:
-            return center
-        # using exact location, step to the corner of the intersection or to the mid-block
-        return distanceBearingFromCenter(radius, center_bearing, center)
+        return calculateExactLocation( hours, minutes, letter, radius, location["exact_location"])
 
 
        
