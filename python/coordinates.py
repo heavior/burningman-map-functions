@@ -288,7 +288,7 @@ def calculateExactLocation(hours, minutes, letter, radius, exact_location):
         print(f"no center bearing calculateExactLocation({hours}, {minutes}, {letter}, {radius}, {exact_location})")
         return center
     result =  distanceBearingFromCenter(radius, center_bearing, center)
-    print(f"calculateExactLocation({hours}, {minutes}, {letter}, {radius}, {exact_location}) -> {center_bearing} -> {result}")
+    # print(f"calculateExactLocation({hours}, {minutes}, {letter}, {radius}, {exact_location}) -> {center_bearing} -> {result}")
     return result
 
 

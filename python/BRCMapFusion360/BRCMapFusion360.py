@@ -17,10 +17,11 @@ from geopy.distance import geodesic
 from map import renderMap, GOLDEN_STAKE, diameterKInFeet
 
 # Global variables
-FLIP_Z = False
+FLIP_Z = True
 MIRROR_X = False
 SKETCH_NAME = "BRC map"
-CITY_DIAMETER_CM = 4.7  # Diameter of the city in centimeters
+DEFAULT_CITY_DIAMETER_CM = 4.7  # Default diameter of the city in centimeters
+DEFAULT_FENCE_SCALE = 1  # Default fence scale
 MOVE_X = 0
 MOVE_Y = 0
 MOVE_Z = 0
@@ -28,7 +29,6 @@ HOUR_FONT_SIZE = .3
 HOUR_FONT = "Reef"  
 LOWER_NUMBERS_FOLLOW_CLOCK = False  
 EXTEND_RADIAL_NAMES_BY_BLOCKS = 1.5
-
 
 def calculate_bearing(pointA, pointB):
     """
@@ -85,27 +85,91 @@ def create_custom_plane(root_comp, origin, sketch_name):
     custom_plane.name = sketch_name + " Plane"
     return custom_plane
 
+def find_sketch_in_component(component, sketch_name):
+    # Search in current component
+    for sketch in component.sketches:
+        if sketch.name == sketch_name:
+            return sketch
+    
+    # Search in subcomponents
+    for occ in component.occurrences:
+        if occ.component:
+            found_sketch = find_sketch_in_component(occ.component, sketch_name)
+            if found_sketch:
+                return found_sketch
+    
+    return None
+
+def clean_sketch(sketch):
+    # Delete all sketch constraints
+    while sketch.geometricConstraints.count > 0:
+        sketch.geometricConstraints.item(0).deleteMe()
+        
+    # Delete all sketch texts
+    while sketch.sketchTexts.count > 0:
+        sketch.sketchTexts.item(0).deleteMe()
+    
+    # Delete all sketch lines (both normal and construction)
+    while sketch.sketchCurves.sketchLines.count > 0:
+        sketch.sketchCurves.sketchLines.item(0).deleteMe()
+    
+    # Delete all sketch arcs
+    while sketch.sketchCurves.sketchArcs.count > 0:
+        sketch.sketchCurves.sketchArcs.item(0).deleteMe()
+    
+    # Delete all sketch circles
+    while sketch.sketchCurves.sketchCircles.count > 0:
+        sketch.sketchCurves.sketchCircles.item(0).deleteMe()
+    
+    # Delete all sketch conic curves
+    while sketch.sketchCurves.sketchConicCurves.count > 0:
+        sketch.sketchCurves.sketchConicCurves.item(0).deleteMe()
+    
+    # Delete all sketch control point splines
+    while sketch.sketchCurves.sketchControlPointSplines.count > 0:
+        sketch.sketchCurves.sketchControlPointSplines.item(0).deleteMe()
+    
+    # Delete all sketch ellipses
+    while sketch.sketchCurves.sketchEllipses.count > 0:
+        sketch.sketchCurves.sketchEllipses.item(0).deleteMe()
+    
+    # Delete all sketch elliptical arcs
+    while sketch.sketchCurves.sketchEllipticalArcs.count > 0:
+        sketch.sketchCurves.sketchEllipticalArcs.item(0).deleteMe()
+    
+    # Delete all sketch fitted splines
+    while sketch.sketchCurves.sketchFittedSplines.count > 0:
+        sketch.sketchCurves.sketchFittedSplines.item(0).deleteMe()
+    
+    # Delete all sketch fixed splines
+    while sketch.sketchCurves.sketchFixedSplines.count > 0:
+        sketch.sketchCurves.sketchFixedSplines.item(0).deleteMe()
+    
+    # Delete all sketch points
+    while sketch.sketchPoints.count > 1:
+        sketch.sketchPoints.item(0).deleteMe()
+    
+    # Delete all sketch dimensions
+    while sketch.sketchDimensions.count > 0:
+        sketch.sketchDimensions.item(0).deleteMe()
+
 def find_or_create_sketch(design, sketch_name, origin):
     root_comp = design.rootComponent
-    sketches = root_comp.sketches
-
-    # Check if the sketch already exists
-    sketch = None
-    for sk in sketches:
-        if sk.name == sketch_name:
-            sketch = sk
-            break
-
-    # If the sketch exists, delete it
-    if sketch:
-        sketch.deleteMe()
-
-    # Create a custom plane at the desired origin
-    custom_plane = create_custom_plane(root_comp, origin, sketch_name)
     
-    # Create a new sketch on the custom plane
-    sketch = sketches.add(custom_plane)
-    sketch.name = sketch_name
+    # Search for the sketch in all components
+    sketch = find_sketch_in_component(root_comp, sketch_name)
+
+    # If the sketch exists, clean it instead of deleting
+    if sketch:
+        clean_sketch(sketch)
+    else:
+        # Create a custom plane at the desired origin
+        custom_plane = create_custom_plane(root_comp, origin, sketch_name)
+        
+        # Create a new sketch on the custom plane
+        sketch = root_comp.sketches.add(custom_plane)
+        sketch.name = sketch_name
+    
     return sketch
 
 def add_circle(sketch, location, radius, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z):
@@ -272,17 +336,19 @@ def add_fusion_hour_label(sketch_text, hour, minute, location, bearing, hour_fon
 
 
 def render_map(sketch, sketch_text, sketch_fence, flip_z, mirror_x, city_diameter_cm, move_x, move_y, move_z, 
-               hour_font_size, hour_font, lower_numbers_follow_clock, extend_radial_names_by_blocks):
+               hour_font_size, hour_font, lower_numbers_follow_clock, extend_radial_names_by_blocks,
+               fence_scale):
     if sketch_fence is None:
         sketch_fence = sketch
     if sketch_text is None:
         sketch_text = sketch
     feet_per_cm = diameterKInFeet / city_diameter_cm
+    feet_per_cm_fence = feet_per_cm / fence_scale
     log_message("Starting the render_map function")
     renderMap(
         lambda startAngle, endAngle, archRadius, center, name: add_fusion_arch(sketch, startAngle, endAngle, archRadius, center, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
         lambda startCoordinates, endCoordinates, name: add_fusion_line(sketch, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
-        lambda startCoordinates, endCoordinates, name: add_fusion_line(sketch_fence, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
+        lambda startCoordinates, endCoordinates, name: add_fusion_line(sketch_fence, startCoordinates, endCoordinates, name, flip_z, mirror_x, feet_per_cm_fence, move_x, move_y, move_z),
         lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),
         lambda location, width, name: add_fusion_circle(sketch, location, width, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addMan
         lambda location, width, name: add_heart(sketch, location, width / 2, name, flip_z, mirror_x, feet_per_cm, move_x, move_y, move_z),  # addTemple
@@ -293,6 +359,17 @@ def render_map(sketch, sketch_text, sketch_fence, flip_z, mirror_x, city_diamete
     )
     log_message("Finished rendering the map")
 
+def get_model_parameter(design, parameter_name, default_value):
+    """
+    Get a parameter value from the model, return default if not found
+    """
+    try:
+        param = design.userParameters.itemByName(parameter_name)
+        if param:
+            return param.value
+        return default_value
+    except:
+        return default_value
 
 def run(context):
     ui = None
@@ -301,11 +378,16 @@ def run(context):
         ui = app.userInterface
         design = app.activeProduct
         
+        # Get city diameter from parameters
+        city_diameter_cm = get_model_parameter(design, "lid_city_diameter", DEFAULT_CITY_DIAMETER_CM)
+        fence_scale = get_model_parameter(design, "lid_fence_scale", DEFAULT_FENCE_SCALE)
+        
         origin = adsk.core.Point3D.create(0, 0, 0)
         sketch = find_or_create_sketch(design, SKETCH_NAME, origin)
-        render_map(sketch, None, None, FLIP_Z, MIRROR_X, CITY_DIAMETER_CM, MOVE_X, MOVE_Y, MOVE_Z, 
+        render_map(sketch, None, None, FLIP_Z, MIRROR_X, city_diameter_cm, MOVE_X, MOVE_Y, MOVE_Z, 
                    HOUR_FONT_SIZE, HOUR_FONT, 
-                   LOWER_NUMBERS_FOLLOW_CLOCK, EXTEND_RADIAL_NAMES_BY_BLOCKS)
+                   LOWER_NUMBERS_FOLLOW_CLOCK, EXTEND_RADIAL_NAMES_BY_BLOCKS,
+                   fence_scale)
     except:
         if ui:
             ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
